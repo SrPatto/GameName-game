@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cu4dax3quxxsy"]
+
+[ext_resource type="PackedScene" uid="uid://bx3vgf6t8ijq6" path="res://scenes/player.tscn" id="1_lgrwq"]
+[ext_resource type="PackedScene" uid="uid://dgn7xfiwb47md" path="res://scenes/enemy.tscn" id="2_4pmxj"]
+
+[node name="Debug" type="Node2D" unique_id=1610004360]
+
+[node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("2_4pmxj")]
+position = Vector2(586, 117)
+list_of_attacks = {
+"basic_attack": false,
+"basic_block": false,
+"saliva_spit": false,
+"spikes_thorw": false,
+"strong_attack": false,
+"thornmail": false,
+"tuna_throw": true
+}
+
+[node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
+position = Vector2(589, 521)

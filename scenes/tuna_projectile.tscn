@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cbfeo6ssxk6c2"]
+
+[ext_resource type="Script" uid="uid://k8xn8fycvg3l" path="res://scripts/enemy/tuna_projectile.gd" id="1_vdusc"]
+[ext_resource type="Texture2D" uid="uid://beoknh6o1uope" path="res://assets/SS_tuna_32x32.png" id="2_ln5ey"]
+[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="3_1o6jc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5gx7d"]
+radius = 14.0
+
+[node name="Tuna_projectile" type="Node2D" unique_id=1013310171]
+script = ExtResource("1_vdusc")
+
+[node name="Tuna_sprite" type="Sprite2D" parent="." unique_id=514706273]
+texture = ExtResource("2_ln5ey")
+hframes = 2
+
+[node name="Hitbox" type="Area2D" parent="Tuna_sprite" unique_id=650725462 node_paths=PackedStringArray("collision_shape")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("3_1o6jc")
+damage = 1
+collision_shape = NodePath("CollisionShape_hitbox")
+metadata/_custom_type_script = "uid://bs2n4vqesja0l"
+
+[node name="CollisionShape_hitbox" type="CollisionShape2D" parent="Tuna_sprite/Hitbox" unique_id=1494504023]
+shape = SubResource("CircleShape2D_5gx7d")
+
+[connection signal="area_entered" from="Tuna_sprite/Hitbox" to="." method="_on_hitbox_area_entered"]

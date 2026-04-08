@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bx3vgf6t8ijq6"]
+
+[ext_resource type="Texture2D" uid="uid://nrdk4fsjprg" path="res://assets/icon.svg" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dnhf00mid4ljm" path="res://scripts/player/player.gd" id="1_qlg0r"]
+[ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/hurtbox.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://ixs3jfg4h08n" path="res://scripts/block_area.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://6cbwfckh631h" path="res://scripts/player/input_manager.gd" id="4_dqkch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 90.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
+radius = 90.0
+
+[node name="player" type="Node2D" unique_id=965662919 node_paths=PackedStringArray("input_manager")]
+script = ExtResource("1_qlg0r")
+input_manager = NodePath("input_manager")
+
+[node name="Sprite2D_debug" type="Sprite2D" parent="." unique_id=2046025920]
+texture = ExtResource("1_3vyb7")
+
+[node name="block_area" type="Area2D" parent="." unique_id=950908905]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_tuyoq")
+
+[node name="CollisionShape_block" type="CollisionShape2D" parent="block_area" unique_id=88855179]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_qhqgy")
+disabled = true
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=71319457]
+collision_mask = 2
+script = ExtResource("2_g2els")
+metadata/_custom_type_script = "uid://ci2rdpgbntsqk"
+
+[node name="CollisionShape_hurtbox" type="CollisionShape2D" parent="Hurtbox" unique_id=262386857]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_dqkch")
+debug_color = Color(0.05146283, 0.64679456, 0.20196581, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1313918607 node_paths=PackedStringArray("collision_shape")]
+position = Vector2(0, -400)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("3_qhqgy")
+damage = 10
+collision_shape = NodePath("CollisionShape_hitbox")
+metadata/_custom_type_script = "uid://bs2n4vqesja0l"
+
+[node name="CollisionShape_hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1299118592]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_qlg0r")
+disabled = true
+debug_color = Color(1, 0.019232832, 0.0017920041, 0.41960785)
+
+[node name="timers" type="Node" parent="." unique_id=152283451]
+
+[node name="ParryTimer" type="Timer" parent="timers" unique_id=1231081539]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackCD" type="Timer" parent="timers" unique_id=1010166160]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BlockCD" type="Timer" parent="timers" unique_id=1171021598]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="input_manager" type="Node" parent="." unique_id=1867915646]
+script = ExtResource("4_dqkch")
