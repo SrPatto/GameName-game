@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://dosayvhfu6tyu" path="res://scripts/enemy/enemy.gd" id="1_5uy6h"]
 [ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/hurtbox.gd" id="1_md0e3"]
 [ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="2_4ra3w"]
-[ext_resource type="Texture2D" uid="uid://cyxi05tqalxg4" path="res://assets/enemy/SS_noplaus_160x160.png" id="2_5uy6h"]
+[ext_resource type="Texture2D" uid="uid://cyxi05tqalxg4" path="res://assets/enemy/visuals/SS_noplaus_160x160.png" id="2_5uy6h"]
+[ext_resource type="AudioStream" uid="uid://br2fi20h5j1hr" path="res://assets/enemy/sfx/saliva-spit.wav" id="5_c4w8v"]
+[ext_resource type="AudioStream" uid="uid://bp2oxijsnd8jy" path="res://assets/enemy/sfx/thorn_throw.wav" id="6_xwavj"]
+[ext_resource type="AudioStream" uid="uid://cwhis252gbhse" path="res://assets/enemy/sfx/attack.wav" id="7_nenq2"]
+[ext_resource type="AudioStream" uid="uid://xkplh4sl883y" path="res://assets/enemy/sfx/block.wav" id="8_md484"]
 
 [sub_resource type="Animation" id="Animation_5uy6h"]
 length = 0.001
@@ -30,6 +34,54 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(64, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/sfx_salivaSpit:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/sfx_thorn_throw:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/sfx_attack:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SFX/sfx_block:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
@@ -60,6 +112,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [Vector2(64, 0), Vector2(64, 0), Vector2(-6, 34), Vector2(-28, 66), Vector2(64, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/sfx_attack:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_md484"]
 resource_name = "basic_block"
@@ -75,6 +139,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [45, 46, 47]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX/sfx_block:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ipns3"]
@@ -116,7 +192,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_8qclf"]
 resource_name = "saliva_spit"
 length = 1.2
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -128,6 +204,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [39, 40, 41, 42, 43]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX/sfx_salivaSpit:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nenq2"]
@@ -191,6 +279,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [35, 36, 37]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SFX/sfx_thorn_throw:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_wtq4b"]
@@ -266,6 +366,23 @@ debug_color = Color(0.99801356, 0, 0.1633648, 0.41960785)
 [node name="NextMoveCD" type="Timer" parent="." unique_id=557912791]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="SFX" type="Node" parent="." unique_id=1152044382]
+
+[node name="sfx_salivaSpit" type="AudioStreamPlayer" parent="SFX" unique_id=1498005740]
+unique_name_in_owner = true
+stream = ExtResource("5_c4w8v")
+
+[node name="sfx_thorn_throw" type="AudioStreamPlayer" parent="SFX" unique_id=664126599]
+unique_name_in_owner = true
+stream = ExtResource("6_xwavj")
+
+[node name="sfx_attack" type="AudioStreamPlayer" parent="SFX" unique_id=395509072]
+unique_name_in_owner = true
+stream = ExtResource("7_nenq2")
+
+[node name="sfx_block" type="AudioStreamPlayer" parent="SFX" unique_id=1965354697]
+stream = ExtResource("8_md484")
 
 [node name="Markers" type="Node2D" parent="." unique_id=1175067317]
 

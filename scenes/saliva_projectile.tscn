@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdroxju7omb05" path="res://scripts/enemy/saliva_projectile.gd" id="1_jdi2w"]
 [ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="1_mx1xd"]
-[ext_resource type="Texture2D" uid="uid://csxygdwp3t7y7" path="res://assets/enemy/projectiles/SS_proyectiles_34x34.png" id="2_cuil4"]
+[ext_resource type="Texture2D" uid="uid://csxygdwp3t7y7" path="res://assets/enemy/visuals/projectiles/SS_proyectiles_34x34.png" id="2_cuil4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jdi2w"]
 

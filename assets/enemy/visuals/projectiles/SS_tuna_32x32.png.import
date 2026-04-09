@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csxygdwp3t7y7"
-path="res://.godot/imported/SS_proyectiles_34x34.png-8c6459d2e8e8a3e14b3a63979faf3da0.ctex"
+uid="uid://beoknh6o1uope"
+path="res://.godot/imported/SS_tuna_32x32.png-bb79fe3d147007be60ae0bd4d69b1c4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/projectiles/SS_proyectiles_34x34.png"
-dest_files=["res://.godot/imported/SS_proyectiles_34x34.png-8c6459d2e8e8a3e14b3a63979faf3da0.ctex"]
+source_file="res://assets/enemy/visuals/projectiles/SS_tuna_32x32.png"
+dest_files=["res://.godot/imported/SS_tuna_32x32.png-bb79fe3d147007be60ae0bd4d69b1c4c.ctex"]
 
 [params]
 

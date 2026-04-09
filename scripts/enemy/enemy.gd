@@ -221,6 +221,7 @@ func thornmail():
 
 func take_damage(damage: int):
 	if is_blocking or has_thornmail:
+		$SFX/sfx_block.play()
 		print("nopal was blocking")
 		return
 	current_health -= damage
