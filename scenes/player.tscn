@@ -8,19 +8,20 @@
 [ext_resource type="Script" uid="uid://6cbwfckh631h" path="res://scripts/player/input_manager.gd" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 90.0
+radius = 69.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
-radius = 60.0
+radius = 31.016125
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
-radius = 90.0
+radius = 32.0
 
 [node name="player" type="Node2D" unique_id=965662919 node_paths=PackedStringArray("input_manager")]
 script = ExtResource("1_qlg0r")
 input_manager = NodePath("input_manager")
 
 [node name="Sprite2D_debug" type="Sprite2D" parent="." unique_id=2046025920]
+scale = Vector2(0.5, 1)
 texture = ExtResource("1_3vyb7")
 
 [node name="block_area" type="Area2D" parent="." unique_id=950908905]
@@ -45,7 +46,7 @@ shape = SubResource("CircleShape2D_dqkch")
 debug_color = Color(0.05146283, 0.64679456, 0.20196581, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1313918607 node_paths=PackedStringArray("collision_shape")]
-position = Vector2(0, -400)
+position = Vector2(92, -128)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("3_qhqgy")

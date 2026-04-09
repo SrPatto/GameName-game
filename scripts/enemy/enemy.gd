@@ -24,14 +24,19 @@ extends Node2D
 
 var available_attacks: Array[String]
 var next_attacks: Array[String]
+var current_attack: String
 
 var current_health := 0
 
+var next_attack_enabled := false
 var is_blocking := false
 var has_thornmail := false
 var is_attacking := false
 
+var threw_tuna := false
+
 func _ready() -> void:
+	animation_player.play("idle")
 	current_health = max_health
 	hurtbox.parent = self
 	hitbox.parent = self
@@ -39,13 +44,23 @@ func _ready() -> void:
 	print("list of available attacks: ", available_attacks)
 	next_attacks = get_next_attacks(amount_of_attacks)
 	print("list of next attacks: ", next_attacks)
+	
+	await get_tree().create_timer(2).timeout
+	next_attack_enabled = true
 
 func _process(delta: float) -> void:
-	if (!is_attacking and !is_blocking) && next_move_cd.is_stopped():
+	if next_attack_enabled && next_move_cd.is_stopped():
 		make_next_attack()
+	
+	if current_attack == "tuna_throw":
+			var current_anim_pos = animation_player.get_current_animation_position()
+			if (current_anim_pos >= .8 && current_anim_pos <= 0.9) && !threw_tuna:
+				threw_tuna = true
+				shoot_tuna()
 
 func change_attack(new_attack: String):
-	match  new_attack:
+	current_attack = new_attack
+	match  current_attack:
 		"basic_attack":
 			basic_attack()
 		"strong_attack":
@@ -67,12 +82,8 @@ func make_next_attack():
 	if !next_attacks.is_empty():
 		current_attack = next_attacks.pop_front()
 		change_attack(current_attack)
-		print("current attack: ", current_attack)
-		print("list of next attacks: ", next_attacks)
 	else:
-		print("list of available attacks: ", available_attacks)
 		next_attacks = get_next_attacks(amount_of_attacks)
-		print("list of next attacks: ", next_attacks)
 		next_move_cd.set_wait_time(5)
 		next_move_cd.start()
 		is_attacking = false
@@ -84,7 +95,6 @@ func get_available_moves() -> Array[String]:
 	
 	for attack in list_of_attacks:
 		if list_of_attacks[attack]:
-			print("attack available: ", attack)
 			avail_attacks.append(attack)
 	return avail_attacks
 
@@ -97,38 +107,48 @@ func get_next_attacks(lenght: int) -> Array[String]:
 	return next_atcks
 
 func basic_attack():
+	next_attack_enabled = false
 	is_attacking = true
 	next_move_cd.set_wait_time(.5)
 	hitbox.collision_shape.disabled = false
 	hitbox.damage = 1
 	animation_player.play("basic_attack")
 	await animation_player.animation_finished
+	animation_player.play("idle")
 	next_move_cd.start()
 
 func strong_attack():
+	next_attack_enabled = false
 	is_attacking = true
 	next_move_cd.set_wait_time(1.2)
 	hitbox.collision_shape.disabled = false
 	hitbox.damage = 2
-	animation_player.play("basic_attack")
-	print("hola")
+	animation_player.play("strong_attack")
 	await animation_player.animation_finished
-	print("adios")
-
-func tuna_throw():
-	is_attacking = true
-	next_move_cd.set_wait_time(.5)
-	
-	const TUNA_SCENE = preload("uid://cbfeo6ssxk6c2")
-	var new_tuna: TunaProjectile = TUNA_SCENE.instantiate()
-	new_tuna.global_position = tuna_spawn_point.global_position
-	new_tuna.parent = self
-	projectiles.add_child(new_tuna)
-	new_tuna.LaunchProjectile(tuna_spawn_point.global_position, Vector2(-1, 1), 400, 45)
-	
+	animation_player.play("idle")
 	next_move_cd.start()
 
+func tuna_throw():
+	next_attack_enabled = false
+	is_attacking = true
+	next_move_cd.set_wait_time(.5)
+	animation_player.play("throw_tuna")
+	
+	await animation_player.animation_finished
+	
+	animation_player.play("idle")
+	threw_tuna = false
+	next_move_cd.start()
+
+func shoot_tuna():
+	const TUNA_SCENE = preload("uid://cbfeo6ssxk6c2")
+	var new_tuna: TunaProjectile = TUNA_SCENE.instantiate()
+	new_tuna.parent = self
+	projectiles.add_child(new_tuna)
+	new_tuna.LaunchProjectile(tuna_spawn_point.global_position, Vector2(-.5, 1), 200, 45)
+
 func thorns_throw():
+	next_attack_enabled = false
 	is_attacking = true
 	next_move_cd.set_wait_time(.5)
 	
@@ -138,52 +158,66 @@ func thorns_throw():
 	var thorns_throwed := 0
 	
 	while thorns_throwed < max_thorns:
+		animation_player.play("throw_thorn")
 		var new_thorn: ThornProjectile = THORN_SCENE.instantiate()
 		new_thorn.parent = self
+		await animation_player.animation_finished
 		projectiles.add_child(new_thorn)
 		new_thorn.global_position = thorn_spawn_point.global_position
 		thorns_throwed += 1
-		await get_tree().create_timer(.2).timeout
+		
 		print("thorns_throwed: ", thorns_throwed)
 	
 	print("thorns_throw finished")
+	animation_player.play("idle")
 	next_move_cd.start()
 
 func saliva_spit():
+	next_attack_enabled = false
 	is_attacking = true
 	next_move_cd.set_wait_time(.5)
+	animation_player.play("saliva_spit")
 	
 	const SALIVA_SCENE = preload("uid://xbt8v7pvtll6")
 	var new_saliva: SalivaProjectile = SALIVA_SCENE.instantiate()
 	new_saliva.global_position = saliva_spawn_point.global_position
 	new_saliva.parent = self
+	await animation_player.animation_finished
 	projectiles.add_child(new_saliva)
-	new_saliva.LaunchProjectile(saliva_spawn_point.global_position, Vector2(-1, 1), 500, 15)
+	new_saliva.LaunchProjectile(saliva_spawn_point.global_position, Vector2(-1, 1), 200, 15)
 	
+	animation_player.play("idle")
 	next_move_cd.start()
 
 func basic_block():
+	next_attack_enabled = false
 	is_blocking = true
 	next_move_cd.set_wait_time(.2)
+	animation_player.play("basic_block")
 	$Hurtbox/CollisionShape2D.debug_color = Color(0xbd77006b)
 	
-	var rand_time = randf_range(1, 1.6)
+	await get_tree().create_timer(.8).timeout
+	is_blocking = false
+	$Hurtbox/CollisionShape2D.debug_color = Color(0x00a6186b)
 	
-	await get_tree().create_timer(rand_time).timeout
-	
+	await animation_player.animation_finished
+	animation_player.play("idle")
 	next_move_cd.start()
 
 func thornmail():
-	has_thornmail = true
+	next_attack_enabled = false
 	next_move_cd.set_wait_time(.2)
+	animation_player.play("thornmail")
+	
+	await get_tree().create_timer(.2).timeout
+	has_thornmail = true
 	$Hurtbox/CollisionShape2D.debug_color = Color(0xf700796b)
 	
-	var rand_time = randf_range(1, 1.6)
-	
-	await get_tree().create_timer(rand_time).timeout
-	
+	await animation_player.animation_finished
+	has_thornmail = false
+	animation_player.play("idle")
 	next_move_cd.start()
-
+	$Hurtbox/CollisionShape2D.debug_color = Color(0x00a6186b)
 
 func take_damage(damage: int):
 	if is_blocking or has_thornmail:
@@ -195,8 +229,4 @@ func take_damage(damage: int):
 	pass
 
 func _on_next_move_cd_timeout() -> void:
-	is_attacking = false
-	if is_blocking or has_thornmail:
-		$Hurtbox/CollisionShape2D.debug_color = Color(0x00a6186b)
-		is_blocking = false
-		has_thornmail = false
+	next_attack_enabled = true

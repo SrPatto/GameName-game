@@ -10,7 +10,7 @@ func _ready() -> void:
 	hitbox.parent = parent 
 
 func _physics_process(delta: float) -> void:
-	global_position += Vector2(0, 1).rotated(.5) * speed * delta
+	global_position += Vector2(0, 1).rotated(1) * speed * delta
 	pass
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

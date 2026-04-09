@@ -59,5 +59,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		return 
 	var destroy_frame := 1
 	$Tuna_sprite.frame = destroy_frame
+	is_launch = false
 	await get_tree().create_timer(.5).timeout
 	queue_free()

@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://du7nugtqp3snk"]
 
 [ext_resource type="Script" uid="uid://bqf0y0hgiyibw" path="res://scripts/enemy/thorn_projectile.gd" id="1_dbuuc"]
+[ext_resource type="Texture2D" uid="uid://csxygdwp3t7y7" path="res://assets/enemy/projectiles/SS_proyectiles_34x34.png" id="2_a5fho"]
 [ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="2_dbuuc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dbuuc"]
+radius = 12.0
 
 [node name="Thorn_projectile" type="Node2D" unique_id=12825414]
+z_index = 1
 script = ExtResource("1_dbuuc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1833967520]
+texture = ExtResource("2_a5fho")
+hframes = 4
+frame = 2
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=741909353 node_paths=PackedStringArray("collision_shape")]
 collision_layer = 2
