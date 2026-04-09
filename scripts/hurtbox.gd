@@ -14,6 +14,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.parent == parent:
 		return
 	var hitbox: Hitbox = area
+	if hitbox.get_parent().get_parent() is SalivaProjectile:
+		print("saliva jsjsjsjs")
 	if parent.has_method("take_damage"):
 		parent.take_damage(hitbox.damage)
 		hitbox.collision_shape.set_disabled.call_deferred(true)

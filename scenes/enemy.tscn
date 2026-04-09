@@ -5,12 +5,6 @@
 [ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/hurtbox.gd" id="1_md0e3"]
 [ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="2_4ra3w"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
-radius = 64.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
-radius = 64.0
-
 [sub_resource type="Animation" id="Animation_5uy6h"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -67,17 +61,17 @@ _data = {
 &"basic_attack": SubResource("Animation_c4w8v")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
+radius = 64.0
+
 [node name="Enemy" type="Node2D" unique_id=2027346477]
 script = ExtResource("1_5uy6h")
-list_of_attacks = {
-"basic_attack": true,
-"basic_block": false,
-"saliva_spit": false,
-"spikes_thorw": false,
-"strong_attack": true,
-"thornmail": false,
-"tuna_throw": false
-}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=911382194]
+libraries/ = SubResource("AnimationLibrary_xwavj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1396482284]
 modulate = Color(1, 0, 0, 1)
@@ -109,12 +103,18 @@ debug_color = Color(0.99801356, 0, 0.1633648, 0.41960785)
 unique_name_in_owner = true
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=911382194]
-libraries/ = SubResource("AnimationLibrary_xwavj")
+[node name="Markers" type="Node2D" parent="." unique_id=1175067317]
 
-[node name="tuna_spawnPoint" type="Marker2D" parent="." unique_id=2085124291]
+[node name="tuna_spawnPoint" type="Marker2D" parent="Markers" unique_id=2085124291]
 unique_name_in_owner = true
 position = Vector2(-132, 64)
+
+[node name="thorn_spawnPoint" type="Marker2D" parent="Markers" unique_id=266170809]
+unique_name_in_owner = true
+position = Vector2(-91, 87)
+
+[node name="saliva_spawnPoint" type="Marker2D" parent="Markers" unique_id=966603759]
+unique_name_in_owner = true
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=2024530560]
 

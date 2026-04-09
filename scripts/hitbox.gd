@@ -14,3 +14,9 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if area == parent:
 		return
+	if area.parent is Enemy:
+		var enemy: Enemy = area.parent
+		if !enemy.has_thornmail:
+			return
+		if parent.has_method("take_damage"):
+			parent.take_damage(1) 

@@ -1,7 +1,7 @@
-class_name TunaProjectile
+class_name SalivaProjectile
 extends Node2D
 
-@onready var hitbox: Hitbox = $Tuna_sprite/Hitbox
+@onready var hitbox: Hitbox = $Saliva_sprite/Hitbox
 
 @export var parent: Node2D
 
@@ -34,11 +34,7 @@ func _process(delta: float) -> void:
 			var x_axis: float = initial_speed * cos(deg_to_rad(throw_angle_degrees)) * time
 			global_position = initial_position + throw_direction * x_axis
 			
-			rotate_angle = delta * -time_mult
-			
-			$Tuna_sprite.position.y = -z_axis
-			$Tuna_sprite.rotate(rotate_angle)
-			
+			$Saliva_sprite.position.y = -z_axis	
 
 func LaunchProjectile(initial_pos: Vector2, dir: Vector2, desired_distance: float, desired_angle_deg: float):
 	initial_position = initial_pos
@@ -57,7 +53,4 @@ func LaunchProjectile(initial_pos: Vector2, dir: Vector2, desired_distance: floa
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.parent is not Player:
 		return 
-	var destroy_frame := 1
-	$Tuna_sprite.frame = destroy_frame
-	await get_tree().create_timer(.5).timeout
 	queue_free()
