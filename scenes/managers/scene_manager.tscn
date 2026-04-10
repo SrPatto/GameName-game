@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c00ko6oa6w0l4"]
+
+[ext_resource type="Script" uid="uid://ct1y1q4uxumva" path="res://scripts/managers/scene_manager.gd" id="1_i8qdd"]
+[ext_resource type="PackedScene" uid="uid://c1pi1vvpnl6sm" path="res://scenes/gui/transition_controller.tscn" id="2_oy7fy"]
+[ext_resource type="PackedScene" uid="uid://ma7cyokup1nc" path="res://scenes/managers/music_manager.tscn" id="3_idhv1"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_idhv1"]
+
+[node name="SceneManager" type="Node" unique_id=167461321 node_paths=PackedStringArray("world_2d", "gui", "transition_controller")]
+script = ExtResource("1_i8qdd")
+world_2d = NodePath("world_2d")
+gui = NodePath("gui")
+transition_controller = NodePath("TransitionController")
+
+[node name="world_2d" type="Node2D" parent="." unique_id=1481424665]
+
+[node name="gui" type="Control" parent="." unique_id=1971952310]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionController" parent="." unique_id=589586728 instance=ExtResource("2_oy7fy")]
+
+[node name="MusicManager" parent="." unique_id=105702618 instance=ExtResource("3_idhv1")]
+stream = SubResource("AudioStreamInteractive_idhv1")

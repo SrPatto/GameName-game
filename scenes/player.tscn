@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://nrdk4fsjprg" path="res://assets/icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dnhf00mid4ljm" path="res://scripts/player/player.gd" id="1_qlg0r"]
-[ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/hurtbox.gd" id="2_g2els"]
-[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="3_qhqgy"]
-[ext_resource type="Script" uid="uid://ixs3jfg4h08n" path="res://scripts/block_area.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/utils/hurtbox.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/utils/hitbox.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://ixs3jfg4h08n" path="res://scripts/utils/block_area.gd" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://6cbwfckh631h" path="res://scripts/player/input_manager.gd" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
@@ -21,7 +21,7 @@ script = ExtResource("1_qlg0r")
 input_manager = NodePath("input_manager")
 
 [node name="Sprite2D_debug" type="Sprite2D" parent="." unique_id=2046025920]
-scale = Vector2(0.5, 1)
+scale = Vector2(1, 1.5)
 texture = ExtResource("1_3vyb7")
 
 [node name="block_area" type="Area2D" parent="." unique_id=950908905]

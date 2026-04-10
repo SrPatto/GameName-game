@@ -1,6 +1,7 @@
 class_name Player
 extends Node2D
 
+signal player_died
 
 @onready var block_area: BlockBox = $block_area
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -19,6 +20,7 @@ extends Node2D
 @export var input_manager: InputManager
 
 var current_health := 0
+var is_dead := false
 
 var is_blocking := false
 var is_parrying := false
@@ -79,4 +81,8 @@ func take_damage(damage: int):
 	is_parrying = false
 	print("current_health: ", current_health)
 	print("max_health: ", max_health)
+	if current_health <= 0:
+		is_dead = true
+		input_manager.disabled = true
+		emit_signal("player_died")
 	pass

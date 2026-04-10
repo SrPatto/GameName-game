@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dgn7xfiwb47md"]
 
 [ext_resource type="Script" uid="uid://dosayvhfu6tyu" path="res://scripts/enemy/enemy.gd" id="1_5uy6h"]
-[ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/hurtbox.gd" id="1_md0e3"]
-[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/hitbox.gd" id="2_4ra3w"]
+[ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/utils/hurtbox.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/utils/hitbox.gd" id="2_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://cyxi05tqalxg4" path="res://assets/enemy/visuals/SS_noplaus_160x160.png" id="2_5uy6h"]
+[ext_resource type="Shader" uid="uid://bfsym0wxxa311" path="res://resources/shaders/shake_flash.gdshader" id="2_ipns3"]
 [ext_resource type="AudioStream" uid="uid://br2fi20h5j1hr" path="res://assets/enemy/sfx/saliva-spit.wav" id="5_c4w8v"]
 [ext_resource type="AudioStream" uid="uid://bp2oxijsnd8jy" path="res://assets/enemy/sfx/thorn_throw.wav" id="6_xwavj"]
 [ext_resource type="AudioStream" uid="uid://cwhis252gbhse" path="res://assets/enemy/sfx/attack.wav" id="7_nenq2"]
@@ -324,6 +325,13 @@ _data = {
 &"throw_tuna": SubResource("Animation_wtq4b")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qclf"]
+shader = ExtResource("2_ipns3")
+shader_parameter/hit_effect = 0.0
+shader_parameter/shake_intensity = 3.0
+shader_parameter/flash_speed = 10.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 radius = 64.0
 
@@ -337,11 +345,13 @@ script = ExtResource("1_5uy6h")
 libraries/ = SubResource("AnimationLibrary_xwavj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1396482284]
+material = SubResource("ShaderMaterial_8qclf")
 texture = ExtResource("2_5uy6h")
 hframes = 5
 vframes = 11
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1456442392]
+visible = false
 collision_mask = 2
 script = ExtResource("1_md0e3")
 metadata/_custom_type_script = "uid://ci2rdpgbntsqk"
@@ -351,6 +361,7 @@ shape = SubResource("CircleShape2D_5uy6h")
 debug_color = Color(0, 0.6507415, 0.092763536, 0.41960785)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1191151786 node_paths=PackedStringArray("collision_shape")]
+visible = false
 position = Vector2(64, 0)
 collision_layer = 2
 collision_mask = 5
@@ -382,6 +393,7 @@ unique_name_in_owner = true
 stream = ExtResource("7_nenq2")
 
 [node name="sfx_block" type="AudioStreamPlayer" parent="SFX" unique_id=1965354697]
+unique_name_in_owner = true
 stream = ExtResource("8_md484")
 
 [node name="Markers" type="Node2D" parent="." unique_id=1175067317]

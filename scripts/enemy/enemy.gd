@@ -1,6 +1,8 @@
 class_name Enemy
 extends Node2D
 
+signal nopal_defeated
+
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var hitbox: Hitbox = $Hitbox
 @onready var projectiles: Node2D = $Projectiles
@@ -9,6 +11,7 @@ extends Node2D
 @onready var saliva_spawn_point: Marker2D = %saliva_spawnPoint
 @onready var next_move_cd: Timer = %NextMoveCD
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 @export_category("Combat")
 @export var max_health: int = 100
@@ -27,6 +30,7 @@ var next_attacks: Array[String]
 var current_attack: String
 
 var current_health := 0
+var is_dead := false
 
 var next_attack_enabled := false
 var is_blocking := false
@@ -49,7 +53,7 @@ func _ready() -> void:
 	next_attack_enabled = true
 
 func _process(delta: float) -> void:
-	if next_attack_enabled && next_move_cd.is_stopped():
+	if next_attack_enabled && next_move_cd.is_stopped() && !is_dead:
 		make_next_attack()
 	
 	if current_attack == "tuna_throw":
@@ -227,7 +231,17 @@ func take_damage(damage: int):
 	current_health -= damage
 	print("nopal was hitted")
 	print("nopal health: ", current_health)
+	if current_health <= 0:
+		animation_player.play("defeat")
+		is_dead = true
+		emit_signal("nopal_defeated")
+	hit_flash(1)
+	await get_tree().create_timer(.4).timeout
+	hit_flash(0)
 	pass
+
+func hit_flash(hit_effect):
+	sprite_2d.material.set_shader_parameter("hit_effect", hit_effect)
 
 func _on_next_move_cd_timeout() -> void:
 	next_attack_enabled = true
