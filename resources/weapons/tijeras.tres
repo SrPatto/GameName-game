@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://mk0gacb6w275"]
+
+[ext_resource type="Texture2D" uid="uid://nrdk4fsjprg" path="res://assets/icon.svg" id="1_lr6ey"]
+[ext_resource type="Script" uid="uid://b3xxbd41ffqqc" path="res://scripts/utils/weapon.gd" id="2_a3g5q"]
+
+[resource]
+script = ExtResource("2_a3g5q")
+name = "Tijeras"
+damage = 5.0
+icon = ExtResource("1_lr6ey")
+metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://csrfct3swvv5f"]
+
+[ext_resource type="Texture2D" uid="uid://nrdk4fsjprg" path="res://assets/icon.svg" id="1_7bmp0"]
+[ext_resource type="Script" uid="uid://b3xxbd41ffqqc" path="res://scripts/utils/weapon.gd" id="2_1udxu"]
+
+[resource]
+script = ExtResource("2_1udxu")
+name = "Machete"
+damage = 9.0
+icon = ExtResource("1_7bmp0")
+metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

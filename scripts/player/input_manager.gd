@@ -3,6 +3,14 @@ extends Node
 
 @export var disabled := false
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				%CarouselContainer._next()
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				%CarouselContainer._previous()
+
 func pressed_attack() -> bool:
 	if disabled:
 		return false

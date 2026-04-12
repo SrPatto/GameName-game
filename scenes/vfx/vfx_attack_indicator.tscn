@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://xh8cqq5m0d71"]
+
+[ext_resource type="Shader" uid="uid://q2iht52eokri" path="res://radar_blip.gdshader" id="1_fuufp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_de2si"]
+shader = ExtResource("1_fuufp")
+shader_parameter/circle_width = 0.40000000596048
+shader_parameter/wait_time = 5.0
+shader_parameter/speed = 1.0
+shader_parameter/alpha_boost = 1.5000000074506001
+
+[sub_resource type="Gradient" id="Gradient_fuufp"]
+colors = PackedColorArray(0.9254902, 0.7176471, 0.3882353, 0.85882354, 0.9254902, 0.7176471, 0.3882353, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_de2si"]
+frequency = 0.004
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l1q10"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_de2si")
+color_ramp = SubResource("Gradient_fuufp")
+
+[node name="vfx_AttackIndicator" type="Node2D" unique_id=339442878]
+
+[node name="Sprite2d" type="Sprite2D" parent="." unique_id=2117718139]
+material = SubResource("ShaderMaterial_de2si")
+texture = SubResource("NoiseTexture2D_l1q10")

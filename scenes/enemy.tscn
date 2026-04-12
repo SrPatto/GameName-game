@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bp2oxijsnd8jy" path="res://assets/enemy/sfx/thorn_throw.wav" id="6_xwavj"]
 [ext_resource type="AudioStream" uid="uid://cwhis252gbhse" path="res://assets/enemy/sfx/attack.wav" id="7_nenq2"]
 [ext_resource type="AudioStream" uid="uid://xkplh4sl883y" path="res://assets/enemy/sfx/block.wav" id="8_md484"]
+[ext_resource type="Texture2D" uid="uid://dg1ayaslycg7k" path="res://assets/enemy/visuals/slash.png" id="9_8qclf"]
 
 [sub_resource type="Animation" id="Animation_5uy6h"]
 length = 0.001
@@ -27,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("MeleeAttack/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -104,26 +105,24 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("SFX/sfx_attack:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.1, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(64, 0), Vector2(64, 0), Vector2(-6, 34), Vector2(-28, 66), Vector2(64, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SFX/sfx_attack:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeleeAttack/attack_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
 }
 
 [sub_resource type="Animation" id="Animation_md484"]
@@ -238,7 +237,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("MeleeAttack/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -335,11 +334,154 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 radius = 64.0
 
+[sub_resource type="Animation" id="Animation_j0cyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slash_Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("slash_Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("slash_Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("slash_Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Hitbox:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g0wcc"]
+resource_name = "slash"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slash_Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("slash_Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.175, 1.825), Vector2(0.925, 1.075)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("slash_Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("slash_Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 0.65),
+"transitions": PackedFloat32Array(0.5, 2, 2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Hitbox:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(2, 1, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(32, 0), Vector2(100, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s1ycm"]
+_data = {
+&"RESET": SubResource("Animation_j0cyh"),
+&"slash": SubResource("Animation_g0wcc")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
 radius = 24.0
 
 [node name="Enemy" type="Node2D" unique_id=2027346477]
 script = ExtResource("1_5uy6h")
+list_of_attacks = {
+"basic_attack": false,
+"basic_block": false,
+"saliva_spit": false,
+"strong_attack": true,
+"thornmail": false,
+"thorns_throw": false,
+"tuna_throw": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=911382194]
 libraries/ = SubResource("AnimationLibrary_xwavj")
@@ -359,20 +501,6 @@ metadata/_custom_type_script = "uid://ci2rdpgbntsqk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1824164281]
 shape = SubResource("CircleShape2D_5uy6h")
 debug_color = Color(0, 0.6507415, 0.092763536, 0.41960785)
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=1191151786 node_paths=PackedStringArray("collision_shape")]
-visible = false
-position = Vector2(64, 0)
-collision_layer = 2
-collision_mask = 5
-script = ExtResource("2_4ra3w")
-damage = 1
-collision_shape = NodePath("CollisionShape2D")
-metadata/_custom_type_script = "uid://bs2n4vqesja0l"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1198963244]
-shape = SubResource("CircleShape2D_c4w8v")
-debug_color = Color(0.99801356, 0, 0.1633648, 0.41960785)
 
 [node name="NextMoveCD" type="Timer" parent="." unique_id=557912791]
 unique_name_in_owner = true
@@ -411,5 +539,33 @@ unique_name_in_owner = true
 position = Vector2(-16, 4)
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=2024530560]
+
+[node name="MeleeAttack" type="Node2D" parent="." unique_id=1815303766]
+position = Vector2(-32, 64)
+rotation = -3.7524579
+
+[node name="slash_Sprite2D" type="Sprite2D" parent="MeleeAttack" unique_id=1796311827]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture = ExtResource("9_8qclf")
+offset = Vector2(-16, 0)
+hframes = 5
+
+[node name="attack_animation" type="AnimationPlayer" parent="MeleeAttack" unique_id=1416466807]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_s1ycm")
+
+[node name="Hitbox" type="Area2D" parent="MeleeAttack" unique_id=1191151786 node_paths=PackedStringArray("collision_shape")]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_4ra3w")
+damage = 1
+collision_shape = NodePath("CollisionShape2D")
+metadata/_custom_type_script = "uid://bs2n4vqesja0l"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack/Hitbox" unique_id=1198963244]
+shape = SubResource("CircleShape2D_c4w8v")
+debug_color = Color(0.99801356, 0, 0.1633648, 0.41960785)
 
 [connection signal="timeout" from="NextMoveCD" to="." method="_on_next_move_cd_timeout"]

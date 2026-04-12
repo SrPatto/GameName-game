@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cu4dax3quxxsy"]
 
+[ext_resource type="Script" uid="uid://c68vjqk5hs5ig" path="res://scripts/levels/debug.gd" id="1_j2wbo"]
 [ext_resource type="PackedScene" uid="uid://bx3vgf6t8ijq6" path="res://scenes/player.tscn" id="1_lgrwq"]
 [ext_resource type="PackedScene" uid="uid://dgn7xfiwb47md" path="res://scenes/enemy.tscn" id="2_4pmxj"]
 [ext_resource type="Texture2D" uid="uid://bih6xcgsyv5n1" path="res://assets/level/SS_escenario.png" id="2_hqhvd"]
@@ -42,31 +43,24 @@ animations = [{
 }]
 
 [node name="Debug" type="Node2D" unique_id=1610004360]
-
-[node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
-visible = false
-texture = ExtResource("3_3vd64")
-metadata/_edit_lock_ = true
+script = ExtResource("1_j2wbo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1565529757]
+z_index = -2
 sprite_frames = SubResource("SpriteFrames_5ph7u")
 autoplay = "default"
 frame_progress = 0.17445415
 
 [node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("2_4pmxj")]
 position = Vector2(80, -40)
-list_of_attacks = {
-"basic_attack": false,
-"basic_block": false,
-"saliva_spit": false,
-"strong_attack": false,
-"thornmail": false,
-"thorns_throw": true,
-"tuna_throw": false
-}
 
 [node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
 position = Vector2(-96, 64)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1992209470]
 zoom = Vector2(2, 2)
+
+[node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
+z_index = -2
+texture = ExtResource("3_3vd64")
+metadata/_edit_lock_ = true

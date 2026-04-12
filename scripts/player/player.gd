@@ -15,9 +15,13 @@ signal player_died
 
 @export_category("Combat")
 @export_range(3, 5, 1) var max_health: int = 3
+@export var current_weapon: Weapon
 
 @export_category("Managers")
 @export var input_manager: InputManager
+@export var carousel_container: CarouselContainer
+@export var hud: Control
+
 
 var current_health := 0
 var is_dead := false
@@ -33,6 +37,8 @@ func _ready() -> void:
 	hitbox.parent = self
 	block_area.parent = self
 	
+	change_weapon(hud.current_index.weapon)
+	print(current_weapon.name)
 	current_health = max_health
 	print("current_health: ", current_health)
 	print("max_health: ", max_health)
@@ -75,6 +81,14 @@ func _process(delta: float) -> void:
 			is_parrying = false
 			parry_timer.stop()
 			collision_shape_block.debug_color = Color(0.0, 0.6, 0.7, 0.41)
+	
+	if hud.current_index.weapon != current_weapon:
+		change_weapon(hud.current_index.weapon)
+
+func change_weapon(new_weapon: Weapon):
+	current_weapon = new_weapon
+	print(current_weapon.name)
+	hitbox.damage = current_weapon.damage
 
 func take_damage(damage: int):
 	current_health -= damage

@@ -4,7 +4,7 @@ extends Node2D
 signal nopal_defeated
 
 @onready var hurtbox: Hurtbox = $Hurtbox
-@onready var hitbox: Hitbox = $Hitbox
+@onready var hitbox: Hitbox = %Hitbox
 @onready var projectiles: Node2D = $Projectiles
 @onready var tuna_spawn_point: Marker2D = %tuna_spawnPoint
 @onready var thorn_spawn_point: Marker2D = %thorn_spawnPoint
@@ -38,6 +38,7 @@ var has_thornmail := false
 var is_attacking := false
 
 var threw_tuna := false
+var hitted := false
 
 func _ready() -> void:
 	animation_player.play("idle")
@@ -57,12 +58,20 @@ func _process(delta: float) -> void:
 		make_next_attack()
 	
 	if current_attack == "tuna_throw":
-			var current_anim_pos = animation_player.get_current_animation_position()
-			if (current_anim_pos >= .8 && current_anim_pos <= 0.9) && !threw_tuna:
-				threw_tuna = true
-				shoot_tuna()
+		var current_anim_pos = animation_player.get_current_animation_position()
+		if (current_anim_pos >= .8 && current_anim_pos <= 0.9) && !threw_tuna:
+			threw_tuna = true
+			shoot_tuna()
+	elif current_attack == "basic_attack" or "strong_attack":
+		var current_anim_pos = animation_player.get_current_animation_position()
+		if (current_anim_pos >= 1.1 && current_anim_pos <= 1.2) && !hitted:
+			hitted = true
+			%attack_animation.play("slash")
 
 func change_attack(new_attack: String):
+	const ATK_INDICATOR_SCENE = preload("uid://xh8cqq5m0d71")
+	var new_atx_ind: Node2D = ATK_INDICATOR_SCENE.instantiate()
+	
 	current_attack = new_attack
 	match  current_attack:
 		"basic_attack":
@@ -119,6 +128,8 @@ func basic_attack():
 	animation_player.play("basic_attack")
 	await animation_player.animation_finished
 	animation_player.play("idle")
+	hitted = false
+	%attack_animation.play("RESET")
 	next_move_cd.start()
 
 func strong_attack():
@@ -130,6 +141,8 @@ func strong_attack():
 	animation_player.play("strong_attack")
 	await animation_player.animation_finished
 	animation_player.play("idle")
+	hitted = false
+	%attack_animation.play("RESET")
 	next_move_cd.start()
 
 func tuna_throw():
