@@ -263,7 +263,7 @@ shader_parameter/outline_color = Color(1, 1, 1, 0)
 shader_parameter/sprite_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 69.0
+radius = 80.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 48.0
@@ -363,10 +363,10 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = -61.0
-offset_right = 88.0
-offset_bottom = -61.0
+offset_left = 100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = -80.0
 grow_vertical = 0
 
 [node name="CarouselContainer" type="Node2D" parent="hud/CanvasLayer/WeaponsContainer" unique_id=1669935642 node_paths=PackedStringArray("position_offset_node")]
@@ -383,17 +383,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_right = -48.0
+offset_left = -32.0
+offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WeaponSlot" parent="hud/CanvasLayer/WeaponsContainer/CarouselContainer/Control" unique_id=1180851434 instance=ExtResource("8_jej6c")]
 z_index = 1
 layout_mode = 0
-offset_top = -80.0
-offset_bottom = 80.0
-pivot_offset = Vector2(48, 80)
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_right = 64.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(32, 64)
 focus_mode = 2
 weapon = ExtResource("9_f1ej7")
 
@@ -401,12 +408,17 @@ weapon = ExtResource("9_f1ej7")
 modulate = Color(1, 1, 1, 0.65)
 z_index = -1
 layout_mode = 0
-offset_left = 96.0
-offset_top = -80.0
-offset_right = 192.0
-offset_bottom = 80.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 64.0
+offset_right = 128.0
+grow_horizontal = 1
+grow_vertical = 1
 scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(48, 80)
+pivot_offset = Vector2(32, 64)
 mouse_filter = 2
 weapon = ExtResource("10_oprun")
 
@@ -414,12 +426,17 @@ weapon = ExtResource("10_oprun")
 modulate = Color(1, 1, 1, 0.3)
 z_index = -2
 layout_mode = 0
-offset_left = 192.0
-offset_top = -80.0
-offset_right = 288.0
-offset_bottom = 80.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 128.0
+offset_right = 192.0
+grow_horizontal = 1
+grow_vertical = 1
 scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(48, 80)
+pivot_offset = Vector2(32, 64)
 mouse_filter = 2
 weapon = ExtResource("11_a8ls1")
 

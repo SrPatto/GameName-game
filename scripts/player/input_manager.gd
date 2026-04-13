@@ -4,6 +4,9 @@ extends Node
 @export var disabled := false
 
 func _input(event: InputEvent) -> void:
+	if disabled:
+		return
+	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:

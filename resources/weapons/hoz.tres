@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dphvfnytd8nnk"]
 
 [ext_resource type="Texture2D" uid="uid://ugdbu0tmowts" path="res://assets/player/SS_player_hoz.png" id="1_hsv1j"]
-[ext_resource type="Texture2D" uid="uid://nrdk4fsjprg" path="res://assets/icon.svg" id="1_xbxwl"]
 [ext_resource type="Script" uid="uid://b3xxbd41ffqqc" path="res://scripts/utils/weapon.gd" id="2_hsv1j"]
+[ext_resource type="Texture2D" uid="uid://dn8c4sld3pfgo" path="res://assets/player/weapons/hoz.png" id="2_sa665"]
 
 [resource]
 script = ExtResource("2_hsv1j")
 name = "Hoz"
 damage = 7.0
-icon = ExtResource("1_xbxwl")
+icon = ExtResource("2_sa665")
 animation = ExtResource("1_hsv1j")
 metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

@@ -59,8 +59,8 @@ list_of_attacks = {
 "saliva_spit": false,
 "strong_attack": false,
 "thornmail": false,
-"thorns_throw": false,
-"tuna_throw": true
+"thorns_throw": true,
+"tuna_throw": false
 }
 
 [node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
@@ -70,6 +70,7 @@ position = Vector2(-96, 64)
 zoom = Vector2(2, 2)
 
 [node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
+visible = false
 z_index = -2
 texture = ExtResource("3_3vd64")
 metadata/_edit_lock_ = true

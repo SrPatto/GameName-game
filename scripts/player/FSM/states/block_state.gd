@@ -1,6 +1,7 @@
 class_name Block_State
 extends State
 
+@onready var hurtbox = $"../../Hurtbox"
 @onready var collision_shape_block: CollisionShape2D = %CollisionShape_block
 @onready var sprite_2d = $"../../Sprite2D"
 
@@ -13,10 +14,12 @@ func enter() -> void:
 	state_label.text = "block"
 	animations.play(animation_name)
 	
+	hurtbox.set_collision_mask_value(2, false)
 	is_parry_activated = false
 	parent.is_blocking = true
 
 func exit() -> void:
+	hurtbox.set_collision_mask_value(2, true)
 	sprite_2d.material.set_shader_parameter("outline_color", Color(0.0, 0.0, 0.0, 0.0))
 	animations.play("block_out")
 	parent.is_blocking = false

@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 		if (current_anim_pos >= .8 && current_anim_pos <= 0.9) && !threw_tuna:
 			threw_tuna = true
 			shoot_tuna()
-	elif current_attack == "basic_attack" or "strong_attack":
+	elif current_attack == "basic_attack" or current_attack == "strong_attack":
 		var current_anim_pos = animation_player.get_current_animation_position()
 		if (current_anim_pos >= 1.1 && current_anim_pos <= 1.2) && !hitted:
 			hitted = true
