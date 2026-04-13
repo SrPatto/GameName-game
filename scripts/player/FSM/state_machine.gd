@@ -4,16 +4,17 @@ extends Node
 var starting_state: State
 var current_state: State
 
-@onready var state_label_debug: Label = $Debug_state
+@onready var debug_state = $"../Debug_state"
+
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
-func init(parent: Player, animations: AnimationPlayer, input_manager, state_label: Label = state_label_debug) -> void:
+func init(parent: Player, animations: AnimationPlayer, input_manager, state_label: Label = debug_state) -> void:
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
 		child.input_manager = input_manager
-		child.state_label = state_label
+		child.state_label = debug_state
 
 	# Initialize to the default state
 	change_state(starting_state)

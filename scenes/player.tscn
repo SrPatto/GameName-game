@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnhf00mid4ljm" path="res://scripts/player/player.gd" id="1_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bwk5ehy5ulhdd" path="res://assets/player/SS_player_sissors.png" id="2_3v2ag"]
+[ext_resource type="Shader" uid="uid://jikpu48c4req" path="res://resources/shaders/player.gdshader" id="2_fulsm"]
 [ext_resource type="Script" uid="uid://ci2rdpgbntsqk" path="res://scripts/utils/hurtbox.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bs2n4vqesja0l" path="res://scripts/utils/hitbox.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://ixs3jfg4h08n" path="res://scripts/utils/block_area.gd" id="3_tuyoq"]
@@ -15,6 +16,9 @@
 [ext_resource type="Script" uid="uid://dmbm12dtma4s7" path="res://scripts/player/FSM/state_machine.gd" id="12_jej6c"]
 [ext_resource type="Script" uid="uid://b0pd456u67an5" path="res://scripts/player/FSM/states/idle_state.gd" id="13_f1ej7"]
 [ext_resource type="Script" uid="uid://dika4l181xts1" path="res://scripts/player/FSM/states/attack_state.gd" id="14_oprun"]
+[ext_resource type="Script" uid="uid://na61xfs3y5gl" path="res://scripts/player/FSM/states/block_state.gd" id="15_a8ls1"]
+[ext_resource type="Script" uid="uid://c2g6hj1x80jga" path="res://scripts/player/FSM/states/damaged_state.gd" id="16_qfm1y"]
+[ext_resource type="Script" uid="uid://b8oe67jnrgvw1" path="res://scripts/player/FSM/states/defeated_state.gd" id="18_4r5pv"]
 
 [sub_resource type="Animation" id="Animation_jej6c"]
 length = 0.001
@@ -247,6 +251,17 @@ _data = {
 &"switch": SubResource("Animation_4r5pv")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5pv"]
+shader = ExtResource("2_fulsm")
+shader_parameter/hit_effect = 0.0
+shader_parameter/blink_effect = 0.0
+shader_parameter/shake_intensity = 10.0
+shader_parameter/flash_speed = 30.0
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(1, 1, 1, 0)
+shader_parameter/sprite_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 69.0
 
@@ -266,6 +281,7 @@ hud = NodePath("hud")
 libraries/ = SubResource("AnimationLibrary_60mlk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2046025920]
+material = SubResource("ShaderMaterial_4r5pv")
 scale = Vector2(1, 1.5)
 texture = ExtResource("2_3v2ag")
 offset = Vector2(44, 0)
@@ -322,6 +338,10 @@ one_shot = true
 [node name="BlockCD" type="Timer" parent="timers" unique_id=1171021598]
 unique_name_in_owner = true
 wait_time = 0.5
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="timers" unique_id=545062584]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="hud" type="Control" parent="." unique_id=1891412258]
@@ -421,17 +441,41 @@ uppercase = true
 script = ExtResource("12_jej6c")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=302195906 node_paths=PackedStringArray("attack_State")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=302195906 node_paths=PackedStringArray("attack_State", "block_State", "damaged_State", "defeated_State")]
 script = ExtResource("13_f1ej7")
 attack_State = NodePath("../Attack")
+block_State = NodePath("../Block")
+damaged_State = NodePath("../Damaged")
+defeated_State = NodePath("../Defeated")
 animation_name = "idle"
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=740496034 node_paths=PackedStringArray("idle_State")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=740496034 node_paths=PackedStringArray("idle_State", "damaged_State", "defeated_State")]
 script = ExtResource("14_oprun")
 idle_State = NodePath("../Idle")
+damaged_State = NodePath("../Damaged")
+defeated_State = NodePath("../Defeated")
 animation_name = "attack"
+
+[node name="Block" type="Node" parent="StateMachine" unique_id=2005266622 node_paths=PackedStringArray("idle_State", "damaged_State", "defeated_State")]
+script = ExtResource("15_a8ls1")
+idle_State = NodePath("../Idle")
+damaged_State = NodePath("../Damaged")
+defeated_State = NodePath("../Defeated")
+animation_name = "block_in"
+
+[node name="Damaged" type="Node" parent="StateMachine" unique_id=1793706390 node_paths=PackedStringArray("idle_State", "defeated_State")]
+script = ExtResource("16_qfm1y")
+idle_State = NodePath("../Idle")
+defeated_State = NodePath("../Defeated")
+animation_name = "damage"
+
+[node name="Defeated" type="Node" parent="StateMachine" unique_id=155302406]
+script = ExtResource("18_4r5pv")
+animation_name = "defeated"
 
 [node name="input_manager" type="Node" parent="." unique_id=1867915646]
 script = ExtResource("4_dqkch")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="timers/ParryTimer" to="StateMachine/Block" method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="timers/InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

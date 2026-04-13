@@ -38,7 +38,12 @@ func _process(delta: float) -> void:
 			
 			$Tuna_sprite.position.y = -z_axis
 			$Tuna_sprite.rotate(rotate_angle)
-			
+		else:
+			var destroy_frame := 1
+			$Tuna_sprite.frame = destroy_frame
+			is_launch = false
+			await get_tree().create_timer(.2).timeout
+			queue_free()
 
 func LaunchProjectile(initial_pos: Vector2, dir: Vector2, desired_distance: float, desired_angle_deg: float):
 	initial_position = initial_pos

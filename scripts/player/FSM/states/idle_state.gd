@@ -9,15 +9,17 @@ func exit() -> void:
 	pass
 
 func process_input(event: InputEvent) -> State:
-	if input_manager.pressed_attack():
+	if input_manager.pressed_attack() and parent.attack_cd.is_stopped():
 		return attack_State
-	if input_manager.pressed_block():
+	if input_manager.pressed_block() and parent.block_cd.is_stopped():
 		return block_State
 	return null
 
 func process_frame(delta: float) -> State:
 	if parent.damaged:
 		return damaged_State
+	if parent.is_dead:
+		return defeated_State
 	return null
 
 func process_physics(delta: float) -> State:

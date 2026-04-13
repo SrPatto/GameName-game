@@ -12,8 +12,10 @@ signal player_died
 @onready var parry_timer: Timer = %ParryTimer
 @onready var attack_cd: Timer = %AttackCD
 @onready var block_cd: Timer = %BlockCD
+@onready var invulnerability_timer = %InvulnerabilityTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var state_machine = $StateMachine
 
 enum Player_State {
 	Idle,
@@ -38,7 +40,7 @@ var current_health := 0
 var is_dead := false
 
 var damaged := false
-var stunTimer := 0.5
+var stunTimer := 0.4
 var invulnerability := false
 
 var is_blocking := false
@@ -50,82 +52,22 @@ func _ready() -> void:
 	hurtbox.parent = self
 	hitbox.parent = self
 	block_area.parent = self
+	state_machine.init(self, animation_player, input_manager)
 	
 	change_weapon(hud.current_index.weapon)
 	current_health = max_health
-	animation_player.play("idle")
 	pass
 
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event)
+
+func _physics_process(delta: float) -> void:
+	state_machine.process_physics(delta)
+
 func _process(delta: float) -> void:
-	if input_manager.pressed_attack():
-		if !attack_cd.is_stopped():
-			return
-		change_state(Player_State.Attack)
-		await animation_player.animation_finished
-		change_state(Player_State.Idle)
-		attack_cd.start()
-	
-	if input_manager.pressed_block():
-		if !block_cd.is_stopped():
-			return
-		change_state(Player_State.Block)
-		
-		var current_anim_pos = animation_player.get_current_animation_position()
-		if (current_anim_pos >= .4 && current_anim_pos <= 0.5) && !is_parry_activated:
-			parry_timer.start()
-			is_parry_activated = true
-			is_parrying = true
-			collision_shape_block.debug_color = Color(1.0, 1.0, 0.282, 0.41)
-		if parry_timer.is_stopped():
-			is_parrying = false
-			collision_shape_block.debug_color = Color(0.0, 0.6, 0.7, 0.41)
-		
-	if input_manager.realesed_block() and current_state == Player_State.Block:
-		animation_player.play("block_out")
-		is_blocking = false
-		if !has_parried:
-			block_cd.start()
-		else:
-			has_parried = false
-		if is_parry_activated:
-			is_parry_activated = false
-			is_parrying = false
-			parry_timer.stop()
-			collision_shape_block.debug_color = Color(0.0, 0.6, 0.7, 0.41)
-		await animation_player.animation_finished
-		change_state(Player_State.Idle)
-	
+	state_machine.process_frame(delta)
 	if hud.current_index.weapon != current_weapon:
 		change_weapon(hud.current_index.weapon)
-
-func change_state(new_state: Player_State):
-	if current_state == new_state:
-		return
-	
-	current_state = new_state
-	
-	match current_state:
-		Player_State.Idle:
-			animation_player.play("idle")
-			pass
-		Player_State.Attack:
-			animation_player.play("attack")
-			if is_blocking:
-				collision_shape_block.disabled = true
-			pass
-		Player_State.Block:
-			animation_player.play("block_in")
-			is_blocking = true
-			pass
-		Player_State.Damage:
-			pass
-		Player_State.Defeated:
-			pass
-		Player_State.Switching:
-			pass
-	
-	print(current_state)
-
 
 func change_weapon(new_weapon: Weapon):
 	animation_player.play("switch")
@@ -142,10 +84,23 @@ func take_damage(damage: int):
 	damaged = true
 	print("current_health: ", current_health)
 	print("max_health: ", max_health)
-	if current_health <= 0:
-		is_dead = true
-		input_manager.disabled = true
-		emit_signal("player_died")
-		animation_player.play("defeated")
-		return
-	animation_player.play("damage")
+	
+
+func enable_invulnerability():
+	blink_effect(1)
+	hurtbox.set_collision_mask_value(2, false)
+	invulnerability_timer.start()
+
+func disable_invulnerability():
+	blink_effect(0)
+	hurtbox.set_collision_mask_value(2, true)
+
+func hit_effect(hit_effect, shake_intensity = 1):
+	sprite_2d.material.set_shader_parameter("hit_effect", hit_effect)
+	sprite_2d.material.set_shader_parameter("shake_intensity", shake_intensity)
+func blink_effect(blink_effect):
+	sprite_2d.material.set_shader_parameter("blink_effect", blink_effect)
+
+
+func _on_invulnerability_timer_timeout():
+	disable_invulnerability()

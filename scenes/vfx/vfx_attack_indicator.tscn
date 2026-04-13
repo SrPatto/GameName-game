@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xh8cqq5m0d71"]
 
-[ext_resource type="Shader" uid="uid://q2iht52eokri" path="res://radar_blip.gdshader" id="1_fuufp"]
+[ext_resource type="Shader" uid="uid://q2iht52eokri" path="res://resources/shaders/radar_blip.gdshader" id="1_fuufp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_de2si"]
 shader = ExtResource("1_fuufp")

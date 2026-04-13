@@ -1,6 +1,8 @@
 class_name Attack_State
 extends State
 
+@onready var attack_cd: Timer = %AttackCD
+
 var animationEnded := false
 
 func enter() -> void:
@@ -10,14 +12,11 @@ func enter() -> void:
 	animationEnded = false
 
 func exit() -> void:
-	parent.attack_cd.start()
+	attack_cd.start()
 	pass
 
 func process_input(event: InputEvent) -> State:
-	if input_manager.pressed_attack():
-		return attack_State
-	if input_manager.pressed_block():
-		return block_State
+	
 	return null
 
 func process_frame(delta: float) -> State:
@@ -26,6 +25,8 @@ func process_frame(delta: float) -> State:
 	
 	if parent.damaged:
 		return damaged_State
+	if parent.is_dead:
+		return defeated_State
 	return null
 
 func process_physics(delta: float) -> State:
