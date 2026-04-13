@@ -53,6 +53,15 @@ frame_progress = 0.17445415
 
 [node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("2_4pmxj")]
 position = Vector2(80, -40)
+list_of_attacks = {
+"basic_attack": false,
+"basic_block": true,
+"saliva_spit": false,
+"strong_attack": false,
+"thornmail": false,
+"thorns_throw": false,
+"tuna_throw": false
+}
 
 [node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
 position = Vector2(-96, 64)
