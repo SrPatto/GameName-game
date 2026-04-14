@@ -32,6 +32,7 @@ var current_attack: String
 var current_health := 0
 var is_dead := false
 
+var can_move := false
 var next_attack_enabled := false
 var is_blocking := false
 var has_thornmail := false
@@ -49,12 +50,10 @@ func _ready() -> void:
 	print("list of available attacks: ", available_attacks)
 	next_attacks = get_next_attacks(amount_of_attacks)
 	print("list of next attacks: ", next_attacks)
-	
-	await get_tree().create_timer(2).timeout
 	next_attack_enabled = true
 
 func _process(delta: float) -> void:
-	if next_attack_enabled && next_move_cd.is_stopped() && !is_dead:
+	if next_attack_enabled && next_move_cd.is_stopped() && !is_dead && can_move:
 		make_next_attack()
 	
 	if current_attack == "tuna_throw":

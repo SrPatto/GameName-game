@@ -47,6 +47,7 @@ var is_blocking := false
 var is_parrying := false
 var is_parry_activated := false
 var has_parried := false
+var is_switching := false
 
 func _ready() -> void:
 	hurtbox.parent = self
@@ -70,12 +71,14 @@ func _process(delta: float) -> void:
 		change_weapon(hud.current_index.weapon)
 
 func change_weapon(new_weapon: Weapon):
+	is_switching = true
 	animation_player.play("switch")
 	current_weapon = new_weapon
 	print(current_weapon.name)
 	sprite_2d.texture = current_weapon.animation
 	hitbox.damage = current_weapon.damage
 	await animation_player.animation_finished
+	is_switching = false
 	animation_player.play("idle")
 
 func take_damage(damage: int):
@@ -84,7 +87,6 @@ func take_damage(damage: int):
 	damaged = true
 	print("current_health: ", current_health)
 	print("max_health: ", max_health)
-	
 
 func enable_invulnerability():
 	blink_effect(1)

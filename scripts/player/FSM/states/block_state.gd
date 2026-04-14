@@ -38,6 +38,7 @@ func exit() -> void:
 func process_input(event: InputEvent) -> State:
 	if input_manager.realesed_block():
 		return idle_State
+		
 	if parent.damaged:
 		return damaged_State
 	if parent.is_dead:

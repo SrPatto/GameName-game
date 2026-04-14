@@ -282,7 +282,6 @@ libraries/ = SubResource("AnimationLibrary_60mlk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2046025920]
 material = SubResource("ShaderMaterial_4r5pv")
-scale = Vector2(1, 1.5)
 texture = ExtResource("2_3v2ag")
 offset = Vector2(44, 0)
 hframes = 6

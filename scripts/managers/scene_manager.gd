@@ -12,6 +12,7 @@ var current_gui_scene
 
 func _ready() -> void:
 	Global.scene_manager = self
+	current_2d_scene = $world_2d/Debug
 	#current_gui_scene = $GUI/splash_screen_manager
 	#current_gui_scene = $gui/gui_mainMenu
 

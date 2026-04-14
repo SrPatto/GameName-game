@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c00ko6oa6w0l4"]
 
 [ext_resource type="Script" uid="uid://ct1y1q4uxumva" path="res://scripts/managers/scene_manager.gd" id="1_i8qdd"]
+[ext_resource type="PackedScene" uid="uid://cu4dax3quxxsy" path="res://scenes/debug.tscn" id="2_hc2ek"]
 [ext_resource type="PackedScene" uid="uid://c1pi1vvpnl6sm" path="res://scenes/gui/transition_controller.tscn" id="2_oy7fy"]
 [ext_resource type="PackedScene" uid="uid://ma7cyokup1nc" path="res://scenes/managers/music_manager.tscn" id="3_idhv1"]
 
@@ -13,6 +14,8 @@ gui = NodePath("gui")
 transition_controller = NodePath("TransitionController")
 
 [node name="world_2d" type="Node2D" parent="." unique_id=1481424665]
+
+[node name="Debug" parent="world_2d" unique_id=1610004360 instance=ExtResource("2_hc2ek")]
 
 [node name="gui" type="Control" parent="." unique_id=1971952310]
 layout_mode = 3
