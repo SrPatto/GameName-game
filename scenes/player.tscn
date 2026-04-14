@@ -274,7 +274,7 @@ radius = 32.0
 [node name="player" type="Node2D" unique_id=965662919 node_paths=PackedStringArray("input_manager", "carousel_container", "hud")]
 script = ExtResource("1_qlg0r")
 input_manager = NodePath("input_manager")
-carousel_container = NodePath("hud/CanvasLayer/WeaponsContainer/CarouselContainer")
+carousel_container = NodePath("hud/WeaponsContainer/CarouselContainer")
 hud = NodePath("hud")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=557840367]
@@ -355,10 +355,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("6_3v2ag")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="hud" unique_id=1519945749]
-
-[node name="WeaponsContainer" type="Control" parent="hud/CanvasLayer" unique_id=58682736]
-layout_mode = 3
+[node name="WeaponsContainer" type="Control" parent="hud" unique_id=58682736]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -368,14 +366,14 @@ offset_right = 100.0
 offset_bottom = -80.0
 grow_vertical = 0
 
-[node name="CarouselContainer" type="Node2D" parent="hud/CanvasLayer/WeaponsContainer" unique_id=1669935642 node_paths=PackedStringArray("position_offset_node")]
+[node name="CarouselContainer" type="Node2D" parent="hud/WeaponsContainer" unique_id=1669935642 node_paths=PackedStringArray("position_offset_node")]
 unique_name_in_owner = true
 script = ExtResource("6_fjrip")
 spacing = 0.0
 position_offset_node = NodePath("Control")
 metadata/_custom_type_script = "uid://dxcim6nej56hi"
 
-[node name="Control" type="Control" parent="hud/CanvasLayer/WeaponsContainer/CarouselContainer" unique_id=732907786]
+[node name="Control" type="Control" parent="hud/WeaponsContainer/CarouselContainer" unique_id=732907786]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -387,7 +385,7 @@ offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponSlot" parent="hud/CanvasLayer/WeaponsContainer/CarouselContainer/Control" unique_id=1180851434 instance=ExtResource("8_jej6c")]
+[node name="WeaponSlot" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=1180851434 instance=ExtResource("8_jej6c")]
 z_index = 1
 layout_mode = 0
 anchors_preset = 0
@@ -403,7 +401,7 @@ pivot_offset = Vector2(32, 64)
 focus_mode = 2
 weapon = ExtResource("9_f1ej7")
 
-[node name="WeaponSlot2" parent="hud/CanvasLayer/WeaponsContainer/CarouselContainer/Control" unique_id=488295673 instance=ExtResource("8_jej6c")]
+[node name="WeaponSlot2" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=488295673 instance=ExtResource("8_jej6c")]
 modulate = Color(1, 1, 1, 0.65)
 z_index = -1
 layout_mode = 0
@@ -421,7 +419,7 @@ pivot_offset = Vector2(32, 64)
 mouse_filter = 2
 weapon = ExtResource("10_oprun")
 
-[node name="WeaponSlot3" parent="hud/CanvasLayer/WeaponsContainer/CarouselContainer/Control" unique_id=98215399 instance=ExtResource("8_jej6c")]
+[node name="WeaponSlot3" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=98215399 instance=ExtResource("8_jej6c")]
 modulate = Color(1, 1, 1, 0.3)
 z_index = -2
 layout_mode = 0

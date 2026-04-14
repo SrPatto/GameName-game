@@ -48,28 +48,32 @@ script = ExtResource("1_j2wbo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1565529757]
 z_index = -2
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5ph7u")
 autoplay = "default"
 frame_progress = 0.17445415
 
 [node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("2_4pmxj")]
-position = Vector2(80, -40)
+position = Vector2(720, 320)
+scale = Vector2(2, 2)
 max_health = 20
 list_of_attacks = {
-"basic_attack": false,
-"basic_block": true,
-"saliva_spit": false,
+"basic_attack": true,
+"basic_block": false,
+"saliva_spit": true,
 "strong_attack": false,
 "thornmail": false,
-"thorns_throw": false,
-"tuna_throw": false
+"thorns_throw": true,
+"tuna_throw": true
 }
 
 [node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
-position = Vector2(-96, 64)
+position = Vector2(448, 488)
+scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1992209470]
-zoom = Vector2(2, 2)
+position = Vector2(640, 360)
 
 [node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
 visible = false

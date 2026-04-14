@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bdcl3revawtrd"]
+
+[ext_resource type="Script" uid="uid://07pa2ad6i0gk" path="res://scripts/gui/screens/lose_screen.gd" id="1_v5n5q"]
+
+[node name="LoseScreen" type="Control" unique_id=1791369614]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v5n5q")
+
+[node name="Panel" type="Panel" parent="." unique_id=1736928126]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mainContainer" type="VBoxContainer" parent="Panel" unique_id=1434328085]
+custom_minimum_size = Vector2(896, 486)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -148.0
+offset_right = 288.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="titleLabel" type="Label" parent="Panel/mainContainer" unique_id=342348144]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "DEFEAT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="textLabel" type="Label" parent="Panel/mainContainer" unique_id=1395136421]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "This fight may be over but its not the end"
+horizontal_alignment = 1
+max_lines_visible = 2
+
+[node name="buttonsContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=2020351025]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="backMenuButton" type="Button" parent="Panel/mainContainer/buttonsContainer" unique_id=788441073]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back to main Menu"
+
+[node name="restartButton" type="Button" parent="Panel/mainContainer/buttonsContainer" unique_id=2011965136]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Try Again"
+
+[connection signal="pressed" from="Panel/mainContainer/buttonsContainer/backMenuButton" to="." method="_on_back_menu_button_pressed"]
+[connection signal="pressed" from="Panel/mainContainer/buttonsContainer/restartButton" to="." method="_on_restart_button_pressed"]

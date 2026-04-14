@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://yi2aodmw7mk6"]
+
+[node name="StoreScreen" type="Control" unique_id=266608346]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1935470900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34901962, 0.2784314, 0.38039216, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1473671724]
+custom_minimum_size = Vector2(1152, 640)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mainContainer" type="VBoxContainer" parent="Panel" unique_id=1381773323]
+custom_minimum_size = Vector2(1072, 560)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -280.0
+offset_right = 536.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="topContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=757943171]
+layout_mode = 2
+alignment = 1
+
+[node name="titleLabel" type="Label" parent="Panel/mainContainer/topContainer" unique_id=551187605]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Store"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="pointsPanel" type="Panel" parent="Panel/mainContainer/topContainer" unique_id=680711154]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="pointsLabel" type="Label" parent="Panel/mainContainer/topContainer/pointsPanel" unique_id=1116408804]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "TOTAL POINTS: 0000"
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/mainContainer" unique_id=1147001756]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+
+[node name="itemsContainer" type="HBoxContainer" parent="Panel/mainContainer/PanelContainer" unique_id=1984507615]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=783052554]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="backMenuButton" type="Button" parent="Panel/mainContainer/ButtonsContainer" unique_id=827978344]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Back to main Menu"
+
+[node name="nextButton" type="Button" parent="Panel/mainContainer/ButtonsContainer" unique_id=513925594]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(448, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Next Day"

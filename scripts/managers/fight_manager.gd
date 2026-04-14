@@ -47,54 +47,30 @@ func win():
 		get_final_score(win_screen)
 	print("player wins")
 
-func get_time_score(win_screen: WinScreen) -> int:
-	if !Global.scene_manager:
-		return 1
-	var minutes = int(time/ 60)
-	var seconds = time - minutes * 60
-	win_screen.time_score_label.text = ("%02d:%02d" % [minutes,seconds])
-	if time <= 90.0:
-		win_screen.time_score_label.set("theme_override_colors/font_color", Color(0.925, 0.718, 0.388, 1.0))
-		return 2
-	else:
-		win_screen.time_score_label.set("theme_override_colors/font_color", Color(1.0, 1.0, 1.0, 1.0))
-		return 1
+func get_time_score() -> int:
+	return 2 if time <= 90.0 else 1
 
-func get_health_score(win_screen: WinScreen) -> int:
-	if !Global.scene_manager:
-		return 0
-	var score = (float(player.current_health) / player.max_health) * 10
-	win_screen.health_score_label.text = ("%d/%d" % [player.current_health,player.max_health])
-	if score >= 5:
-		win_screen.health_score_label.set("theme_override_colors/font_color", Color(0.925, 0.718, 0.388, 1.0))
-	return score
+func get_health_score() -> int:
+	return int((float(player.current_health) / player.max_health) * 10)
 
 func get_final_score(win_screen: WinScreen):
 	if !Global.scene_manager:
 		return 
-	var health_score = get_health_score(win_screen)
+	var health_score = get_health_score()
 	print("get_health_score: ", health_score)
-	var time_score = get_time_score(win_screen)
+	var time_score = get_time_score()
 	print("get_time_score: x", time_score)
 	var final_score = health_score * time_score
 	print("final_score: ", final_score)
 	
-	win_screen.final_score_score_label.text = ("%02d" % final_score)
-	if final_score >= 16:
-		win_screen.final_score_style_label.text = "S"
-		win_screen.final_score_style_label.set("theme_override_colors/font_color", Color(0.925, 0.718, 0.388, 1.0))
-	elif final_score >= 12 && final_score < 16:
-		win_screen.final_score_style_label.text = "A"
-		win_screen.final_score_style_label.set("theme_override_colors/font_color", Color(0.925, 0.718, 0.388, 1.0))
-	elif final_score >= 8 && final_score < 12: 
-		win_screen.final_score_style_label.text = "B"
-	elif final_score >= 4 && final_score < 8:
-		win_screen.final_score_style_label.text = "C"
-	else:
-		win_screen.final_score_style_label.text = "D"
+	win_screen.set_time_score(time)
+	win_screen.set_health_score(health_score, player.current_health, player.max_health)
+	win_screen.set_final_score(final_score)
 
 func defeat():
 	disable_game()
+	if !Global.scene_manager:
+		return
+	Global.scene_manager.change_gui_scene("res://scenes/gui/screens/lose_screen.tscn", true, false, false)
 	
-		
 	print("player loses")

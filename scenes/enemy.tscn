@@ -469,7 +469,6 @@ hframes = 5
 vframes = 11
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1456442392]
-visible = false
 collision_mask = 2
 script = ExtResource("1_md0e3")
 metadata/_custom_type_script = "uid://ci2rdpgbntsqk"

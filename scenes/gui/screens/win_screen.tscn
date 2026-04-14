@@ -11,10 +11,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hns8r")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=692279283]
-
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1129179995]
+[node name="Panel" type="Panel" parent="." unique_id=1129179995]
 custom_minimum_size = Vector2(1024, 592)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,7 +26,7 @@ offset_bottom = 296.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="mainContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=33441875]
+[node name="mainContainer" type="VBoxContainer" parent="Panel" unique_id=33441875]
 custom_minimum_size = Vector2(896, 528)
 layout_mode = 1
 anchors_preset = 8
@@ -43,54 +42,54 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 
-[node name="titleLabel" type="Label" parent="CanvasLayer/Panel/mainContainer" unique_id=1083132876]
+[node name="titleLabel" type="Label" parent="Panel/mainContainer" unique_id=1083132876]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "VICTORY"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="textLabel" type="Label" parent="CanvasLayer/Panel/mainContainer" unique_id=1447825394]
+[node name="textLabel" type="Label" parent="Panel/mainContainer" unique_id=1447825394]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Looks like he is done fighting for now..."
 horizontal_alignment = 1
 
-[node name="ScoreContainer" type="HBoxContainer" parent="CanvasLayer/Panel/mainContainer" unique_id=1140291069]
+[node name="ScoreContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=1140291069]
 layout_mode = 2
 theme_override_constants/separation = 128
 alignment = 1
 
-[node name="labelsContainer" type="VBoxContainer" parent="CanvasLayer/Panel/mainContainer/ScoreContainer" unique_id=84653404]
+[node name="labelsContainer" type="VBoxContainer" parent="Panel/mainContainer/ScoreContainer" unique_id=84653404]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="timeLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=1467101239]
+[node name="timeLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=1467101239]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "TIME"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="healthLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=746303687]
+[node name="healthLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=746303687]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "HEALTH"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="finalScoreLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=1633704880]
+[node name="finalScoreLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/labelsContainer" unique_id=1633704880]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "FINAL SCORE"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="scoresContainer" type="VBoxContainer" parent="CanvasLayer/Panel/mainContainer/ScoreContainer" unique_id=452833130]
+[node name="scoresContainer" type="VBoxContainer" parent="Panel/mainContainer/ScoreContainer" unique_id=452833130]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="time_scoreLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1308973900]
+[node name="time_scoreLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1308973900]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -98,7 +97,7 @@ text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="health_scoreLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1055790886]
+[node name="health_scoreLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1055790886]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -106,7 +105,7 @@ text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="finalScore_scoreLabel" type="Label" parent="CanvasLayer/Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1053131577]
+[node name="finalScore_scoreLabel" type="Label" parent="Panel/mainContainer/ScoreContainer/scoresContainer" unique_id=1053131577]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -114,29 +113,29 @@ text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FinalScoreStyleLabel" type="Label" parent="CanvasLayer/Panel/mainContainer" unique_id=2019669225]
+[node name="FinalScoreStyleLabel" type="Label" parent="Panel/mainContainer" unique_id=2019669225]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "D"
 horizontal_alignment = 1
 
-[node name="buttonsContainer" type="HBoxContainer" parent="CanvasLayer/Panel/mainContainer" unique_id=497580333]
+[node name="buttonsContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=497580333]
 layout_mode = 2
 theme_override_constants/separation = 256
 alignment = 1
 
-[node name="backMenuButton" type="Button" parent="CanvasLayer/Panel/mainContainer/buttonsContainer" unique_id=238958356]
+[node name="backMenuButton" type="Button" parent="Panel/mainContainer/buttonsContainer" unique_id=238958356]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 text = "Back to Main Menu"
 
-[node name="shopButton" type="Button" parent="CanvasLayer/Panel/mainContainer/buttonsContainer" unique_id=769607334]
+[node name="shopButton" type="Button" parent="Panel/mainContainer/buttonsContainer" unique_id=769607334]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 text = "Back to Main Menu"
 
-[connection signal="pressed" from="CanvasLayer/Panel/mainContainer/buttonsContainer/backMenuButton" to="." method="_on_back_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/mainContainer/buttonsContainer/shopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Panel/mainContainer/buttonsContainer/backMenuButton" to="." method="_on_back_menu_button_pressed"]
+[connection signal="pressed" from="Panel/mainContainer/buttonsContainer/shopButton" to="." method="_on_shop_button_pressed"]
