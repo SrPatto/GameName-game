@@ -19,9 +19,9 @@ var Story7: Array[String]
 
 func set_stories():
 	Story1.append("I tried telling dad about Nopalus")
-	Story1.append("He refused to take a look, the work is really stressing him out")
+	Story1.append("He refused to take a look, work is really stressing him out")
 	Story1.append("The news have been talking about some mysterious")
-	Story1.append("substance that affects plant's growth")
+	Story1.append("substance that affects plants' growth")
 	Story1.append("Nothing about weird looking plants appearing to try to kill somebody")
 	Story1.append("I think Nopalus is learning some of my defensive moves...")
 
@@ -33,7 +33,7 @@ func set_stories():
 
 	Story3.append("Nopalus is still here")
 	Story3.append("I know I suck at fighting, not gonna lie")
-	Story3.append("But Nopalus will be a tough oponent to anyone who dare to face him anyway")
+	Story3.append("But Nopalus will be a tough oponent to anyone who dares to face him anyway")
 	Story3.append("Dad looks worried every time he leaves for work")
 	Story3.append("He said is ok for me to use some of his tools (guess he knows I been using them)")
 
@@ -75,7 +75,8 @@ func set_stories():
 
 
 func _ready():
-	active_story = Global.current_level + 1
+	$nextButton.hide()
+	active_story = Global.current_level
 	set_stories()
 	var selected_story: Array[String]
 	match active_story:
@@ -99,7 +100,7 @@ func _ready():
 		var label = Label.new()
 		label.text = line
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		$titleLabel.text = str("DAY ", active_story)
+		$titleLabel.text = str("DAY ", Global.current_level)
 		$LinesContainer.add_child(label)
 		var settings = LabelSettings.new()
 		var font = load(font_file)
@@ -123,27 +124,45 @@ func _process(delta):
 
 
 func _on_next_button_pressed() -> void:
-	Global.current_level += 1
 	match Global.current_level:
 		0:
-			Global.scene_manager.change_2d_scene("res://scenes/levels/level2.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/tutorial.tscn")
+			# Global.scene_manager.current_gui_scene.queue_free()
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		1:
-			Global.scene_manager.change_2d_scene("res://scenes/levels/level3.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level1.tscn")
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		2:
-			Global.scene_manager.change_2d_scene("res://scenes/levels/level4.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level2.tscn")
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		3:
-			Global.scene_manager.change_2d_scene("res://scenes/levels/level5.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level3.tscn")
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		4:
-			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/story/story_screen.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level4.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		5:
-			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/story/story_screen.tscn")
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level5.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
 		6:
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/story/story_screen.tscn")
+			Global.current_level += 1
+		7:
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/main_menu_screen.tscn")
+			Global.current_level = 1
+		8:
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/main_menu_screen.tscn")
+			Global.current_level = 1
 
 
 func _on_back_menu_button_pressed() -> void:
 	Global.scene_manager.change_gui_scene("res://scenes/gui/screens/main_menu_screen.tscn")
+
+
+func _on_skip_btn_pressed() -> void:
+	line_interval = 0
+	$nextButton.show()
+
+
+func _on_timer_timeout() -> void:
+	$nextButton.show()

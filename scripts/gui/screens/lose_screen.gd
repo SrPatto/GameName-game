@@ -16,5 +16,19 @@ func _on_back_menu_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	if !Global.scene_manager:
 		return
-	Global.scene_manager.change_2d_scene("res://scenes/debug.tscn")
-	Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
+	match Global.current_level:
+		1:
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level1.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
+		2:
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level2.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
+		3:
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level3.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
+		4:
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level4.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")
+		5:
+			Global.scene_manager.change_2d_scene("res://scenes/levels/level5.tscn")
+			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/pause_screen.tscn")

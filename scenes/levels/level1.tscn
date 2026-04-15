@@ -85,3 +85,9 @@ metadata/_edit_lock_ = true
 [node name="FightManager" parent="." unique_id=1699300463 node_paths=PackedStringArray("enemy", "player") instance=ExtResource("6_nkeig")]
 enemy = NodePath("../Enemy")
 player = NodePath("../player")
+
+[node name="Label" type="Label" parent="." unique_id=1819693289]
+offset_right = 101.14
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 134
+text = "LEVEL 1"

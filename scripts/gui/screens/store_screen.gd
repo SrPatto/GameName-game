@@ -152,3 +152,4 @@ func _on_next_button_pressed() -> void:
 			# Global.scene_manager.change_2d_scene("res://scenes/levels/level5.tscn")
 		4:
 			Global.scene_manager.change_gui_scene("res://scenes/gui/screens/story/story_screen.tscn")
+	Global.current_level += 1

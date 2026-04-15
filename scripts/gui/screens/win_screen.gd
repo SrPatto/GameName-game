@@ -52,5 +52,9 @@ func _on_back_menu_button_pressed() -> void:
 func _on_shop_button_pressed() -> void:
 	if !Global.scene_manager:
 		return
-	Global.scene_manager.change_gui_scene("res://scenes/gui/screens/store_screen.tscn")
+	if !Global.current_level >= 5:
+		Global.scene_manager.change_gui_scene("res://scenes/gui/screens/store_screen.tscn")
+	else:
+		Global.current_level += 1
+		Global.scene_manager.change_gui_scene("res://scenes/gui/screens/story/story_screen.tscn")
 	Global.scene_manager.current_2d_scene.queue_free()

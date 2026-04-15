@@ -1289,7 +1289,7 @@ cache/0/32/0/glyphs/42/texture_idx = 0
 base_font = SubResource("FontFile_0vsxx")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
-[sub_resource type="Image" id="Image_w565l"]
+[sub_resource type="Image" id="Image_0vsxx"]
 data = {
 "data": PackedByteArray("/////////////////////w=="),
 "format": "RGBA8",
@@ -1299,7 +1299,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_bakpq"]
-image = SubResource("Image_w565l")
+image = SubResource("Image_0vsxx")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fe71"]
 content_margin_left = 4.0
