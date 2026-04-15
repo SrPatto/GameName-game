@@ -48,7 +48,10 @@ func first_item():
 
 	items_container.add_child(new_item)
 	new_item.connect("item_bought", refresh_store)
-	new_item.buy_button.disabled = next_item_lvl > 3
+	var max_cant: bool = next_item_lvl > 3
+	var can_buy: bool = Global.upgrades_manager.total_points > new_item.item.cost
+
+	new_item.buy_button.disabled = (max_cant or !can_buy)
 	new_item.sold_label.visible = next_item_lvl > 3
 
 
@@ -73,7 +76,10 @@ func second_item():
 
 	items_container.add_child(new_item)
 	new_item.connect("item_bought", refresh_store)
-	new_item.buy_button.disabled = next_item_lvl > 3
+	var max_cant: bool = next_item_lvl > 3
+	var can_buy: bool = Global.upgrades_manager.total_points > new_item.item.cost
+
+	new_item.buy_button.disabled = (max_cant or !can_buy)
 	new_item.sold_label.visible = next_item_lvl > 3
 
 
@@ -98,7 +104,10 @@ func third_item():
 
 	items_container.add_child(new_item)
 	new_item.connect("item_bought", refresh_store)
-	new_item.buy_button.disabled = next_item_lvl > 3
+	var max_cant: bool = next_item_lvl > 3
+	var can_buy: bool = Global.upgrades_manager.total_points > new_item.item.cost
+
+	new_item.buy_button.disabled = (max_cant or !can_buy)
 	new_item.sold_label.visible = next_item_lvl > 3
 
 
@@ -114,7 +123,11 @@ func fourth_item():
 
 	items_container.add_child(new_item)
 	new_item.connect("item_bought", refresh_store)
-	new_item.buy_button.disabled = extraHealth > 1
+
+	var max_cant: bool = extraHealth > 1
+	var can_buy: bool = Global.upgrades_manager.total_points > new_item.item.cost
+
+	new_item.buy_button.disabled = (max_cant or !can_buy)
 	new_item.sold_label.visible = extraHealth > 1
 
 

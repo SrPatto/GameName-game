@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://6cbwfckh631h" path="res://scripts/player/input_manager.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://dy22ye4c58krt" path="res://scripts/player/player_hud.gd" id="6_3v2ag"]
 [ext_resource type="Script" uid="uid://dxcim6nej56hi" path="res://scripts/utils/carousel_container.gd" id="6_fjrip"]
+[ext_resource type="PackedScene" uid="uid://d2bog0clbp788" path="res://scenes/gui/components/heart_texture.tscn" id="8_fulsm"]
 [ext_resource type="PackedScene" uid="uid://5n3stsoiw2ae" path="res://scenes/gui/components/weapon_slot.tscn" id="8_jej6c"]
 [ext_resource type="Resource" uid="uid://mk0gacb6w275" path="res://resources/weapons/tijeras.tres" id="9_f1ej7"]
 [ext_resource type="Script" uid="uid://dmbm12dtma4s7" path="res://scripts/player/FSM/state_machine.gd" id="12_jej6c"]
@@ -286,7 +287,6 @@ hframes = 6
 vframes = 6
 
 [node name="block_area" type="Area2D" parent="." unique_id=950908905]
-visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_tuyoq")
@@ -298,7 +298,6 @@ disabled = true
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=71319457]
-visible = false
 collision_mask = 2
 script = ExtResource("2_g2els")
 metadata/_custom_type_script = "uid://ci2rdpgbntsqk"
@@ -355,15 +354,46 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("6_3v2ag")
 
-[node name="WeaponsContainer" type="Control" parent="hud" unique_id=58682736]
+[node name="HealthContainer" type="HBoxContainer" parent="hud" unique_id=247430688]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = -80.0
-offset_right = 100.0
-offset_bottom = -80.0
+offset_left = 32.0
+offset_top = -128.0
+offset_right = 352.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="heartTexture" parent="hud/HealthContainer" unique_id=1487409223 instance=ExtResource("8_fulsm")]
+layout_mode = 2
+
+[node name="heartTexture2" parent="hud/HealthContainer" unique_id=283947998 instance=ExtResource("8_fulsm")]
+layout_mode = 2
+
+[node name="heartTexture3" parent="hud/HealthContainer" unique_id=322755187 instance=ExtResource("8_fulsm")]
+layout_mode = 2
+
+[node name="heartTexture4" parent="hud/HealthContainer" unique_id=583505782 instance=ExtResource("8_fulsm")]
+layout_mode = 2
+
+[node name="heartTexture5" parent="hud/HealthContainer" unique_id=1141747624 instance=ExtResource("8_fulsm")]
+layout_mode = 2
+
+[node name="WeaponsContainer" type="Control" parent="hud" unique_id=58682736]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -90.0
+offset_right = -152.0
+offset_bottom = -90.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="CarouselContainer" type="Node2D" parent="hud/WeaponsContainer" unique_id=1669935642 node_paths=PackedStringArray("position_offset_node")]

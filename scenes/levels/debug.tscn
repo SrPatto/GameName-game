@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bx3vgf6t8ijq6" path="res://scenes/player.tscn" id="1_lgrwq"]
 [ext_resource type="PackedScene" uid="uid://dgn7xfiwb47md" path="res://scenes/enemy.tscn" id="2_4pmxj"]
 [ext_resource type="Texture2D" uid="uid://bih6xcgsyv5n1" path="res://assets/level/SS_escenario.png" id="2_hqhvd"]
-[ext_resource type="Texture2D" uid="uid://iysnuyyfjovt" path="res://assets/level/escenario.png" id="3_3vd64"]
 [ext_resource type="PackedScene" uid="uid://ptbqwmn21gqb" path="res://scenes/managers/fight_manager.tscn" id="6_j2wbo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kayp2"]
@@ -61,26 +60,22 @@ max_health = 20
 list_of_attacks = {
 "basic_attack": true,
 "basic_block": false,
-"saliva_spit": true,
+"saliva_spit": false,
 "strong_attack": false,
 "thornmail": false,
-"thorns_throw": true,
-"tuna_throw": true
+"thorns_throw": false,
+"tuna_throw": false
 }
 
 [node name="player" parent="." unique_id=965662919 instance=ExtResource("1_lgrwq")]
-position = Vector2(448, 488)
+position = Vector2(384, 512)
 scale = Vector2(2, 2)
+max_health = 5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1992209470]
 position = Vector2(640, 360)
 
-[node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
-visible = false
-z_index = -2
-texture = ExtResource("3_3vd64")
-metadata/_edit_lock_ = true
-
-[node name="FightManager" parent="." unique_id=1699300463 node_paths=PackedStringArray("enemy", "player") instance=ExtResource("6_j2wbo")]
+[node name="FightManager" parent="." unique_id=1699300463 node_paths=PackedStringArray("enemy", "player", "camera") instance=ExtResource("6_j2wbo")]
 enemy = NodePath("../Enemy")
 player = NodePath("../player")
+camera = NodePath("../Camera2D")

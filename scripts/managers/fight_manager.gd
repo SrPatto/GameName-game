@@ -3,6 +3,13 @@ extends Node
 
 @export var enemy: Enemy
 @export var player: Player
+@export var camera: Camera2D
+
+@export var RANDOM_SHAKE_STRENGTH: float = 30.0
+@export var SHAKE_DECAY_RATE: float = 5.0
+
+@onready var rand = RandomNumberGenerator.new()
+var shake_strength: float = 0.0
 
 var time := 0.0
 
@@ -19,6 +26,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if start_timer:
 		time += delta
+	if camera:
+		shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+		camera.offset = get_random_offset()
 
 func init_game_components():
 	start_timer = false
@@ -26,6 +36,7 @@ func init_game_components():
 	enemy.can_move = false
 	player_upgrades()
 	player.connect("player_died", defeat)
+	player.connect("player_damaged", apply_shake)
 	enemy.connect("nopal_defeated", win)
 
 func player_upgrades():
@@ -43,6 +54,7 @@ func player_upgrades():
 	if Global.upgrades_manager.extraHealth > 0:
 		player.max_health += Global.upgrades_manager.extraHealth
 		player.current_health = player.max_health
+		player.hud.update_heart(player.current_health)
 	pass
 
 func start_fight():
@@ -96,3 +108,12 @@ func defeat():
 	Global.scene_manager.change_gui_scene("res://scenes/gui/screens/lose_screen.tscn", true, false, false)
 	
 	print("player loses")
+
+func apply_shake(strength) -> void:
+	shake_strength = strength
+
+func get_random_offset() -> Vector2:
+	return Vector2(
+		rand.randf_range(-shake_strength, shake_strength),
+		rand.randf_range(-shake_strength, shake_strength)
+	)
