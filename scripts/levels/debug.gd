@@ -1,14 +1,23 @@
 extends Node2D
 
+var guiNode
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	guiNode = get_parent().get_parent().get_node("gui")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _input(event):
+	if event is InputEventKey:
+		if Input.is_action_just_pressed("pause"):
+			get_tree().paused = true
+			guiNode.get_node("SettingsMenu").show()
 
 
 func _on_left_pressed() -> void:

@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dkdph1d7327rv"]
+
+[ext_resource type="Script" uid="uid://dgkn7ixdi0064" path="res://scenes/gui/screens/pause_screen.gd" id="1_njqlt"]
+[ext_resource type="Theme" uid="uid://ct0yeqb8yf3m4" path="res://assets/ui/buttons.tres" id="2_e22g7"]
+[ext_resource type="FontFile" uid="uid://c4roupg1k8si3" path="res://assets/ui/fonts/SERIO___.TTF" id="2_qid50"]
+[ext_resource type="FontFile" uid="uid://cpwfdjolt8o57" path="res://ari_bold.ttf" id="4_ficqi"]
+
+[node name="SettingsMenu" type="Control" unique_id=323899131]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njqlt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=245496866]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.9953365)
+mouse_filter = 1
+color = Color(0, 0, 0, 0.4117647)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2004605825]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 92.0
+offset_right = 30.0
+offset_bottom = 115.0
+grow_horizontal = 2
+scale = Vector2(1, 1.0196016)
+theme_override_fonts/normal_font = ExtResource("2_qid50")
+theme_override_font_sizes/normal_font_size = 120
+text = "Pause"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1501279993]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -132.0
+offset_right = 200.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_e22g7")
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=1187847495]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ficqi")
+theme_override_font_sizes/font_size = 40
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer2" unique_id=263653268]
+custom_minimum_size = Vector2(400.095, 58.055)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Label2" type="Label" parent="VBoxContainer2" unique_id=1434092554]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ficqi")
+theme_override_font_sizes/font_size = 40
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer2" unique_id=802997124]
+custom_minimum_size = Vector2(400.095, 58.055)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="ContinueBtn" type="Button" parent="VBoxContainer2" unique_id=869723535]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONTINUE"
+
+[node name="MenuButton" type="Button" parent="VBoxContainer2" unique_id=1541952727]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "MENU"
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer2" unique_id=934357298]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "QUIT GAME
+"
+
+[connection signal="value_changed" from="VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer2/HSlider2" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="pressed" from="VBoxContainer2/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer2/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/QuitBtn" to="." method="_on_quit_btn_pressed"]
