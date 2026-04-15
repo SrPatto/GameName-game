@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://d4jp50ixs8r1h"]
+
+[ext_resource type="Script" uid="uid://ddwlfjaqkmmb4" path="res://scripts/utils/item.gd" id="1_cvy8n"]
+
+[resource]
+script = ExtResource("1_cvy8n")
+name = " Machete lvl.3"
+desciption = "A really powerful weapon but not so good for defense."
+cost = 28
+metadata/_custom_type_script = "uid://ddwlfjaqkmmb4"

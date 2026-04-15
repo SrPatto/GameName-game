@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://c8d3oghn8ys8w"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_chy7l"]
+load_path = "res://.godot/imported/machete.png-044c55f190c1db7f3c949f81920edd09.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfe07"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 16
+
+[node name="StoreItem" type="Control" unique_id=682764852]
+custom_minimum_size = Vector2(240, 300)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1722374985]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=691286277]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="mainContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=1650427969]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="iconTexture" type="TextureRect" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1442874170]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = SubResource("CompressedTexture2D_chy7l")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1850230097]
+layout_mode = 2
+text = "ITEM_NAME"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1962307745]
+layout_mode = 2
+size_flags_vertical = 3
+text = "lorem lo"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1337556360]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=1369486103]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1251026188]
+layout_mode = 2
+text = "COST: 00"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=482597283]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_hfe07")
+text = "BUY"

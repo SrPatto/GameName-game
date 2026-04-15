@@ -73,7 +73,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_f1ej7"]
 resource_name = "attack"
-length = 1.4
+length = 1.2
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -82,7 +82,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.55, 0.7, 0.85, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10, 11]
@@ -94,7 +94,7 @@ tracks/1/path = NodePath("Hitbox/CollisionShape_hitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 1),
+"times": PackedFloat32Array(0, 0.4, 0.85),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -288,6 +288,7 @@ hframes = 6
 vframes = 6
 
 [node name="block_area" type="Area2D" parent="." unique_id=950908905]
+visible = false
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_tuyoq")
@@ -299,6 +300,7 @@ disabled = true
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=71319457]
+visible = false
 collision_mask = 2
 script = ExtResource("2_g2els")
 metadata/_custom_type_script = "uid://ci2rdpgbntsqk"

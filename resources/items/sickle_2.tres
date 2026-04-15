@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c4l2mxosx3blf"]
+
+[ext_resource type="Script" uid="uid://ddwlfjaqkmmb4" path="res://scripts/utils/item.gd" id="1_0xmhr"]
+
+[resource]
+script = ExtResource("1_0xmhr")
+name = "Sickle  lvl.2"
+desciption = "The greatest defensive weapon that makes your parrys hit harder"
+cost = 22
+metadata/_custom_type_script = "uid://ddwlfjaqkmmb4"

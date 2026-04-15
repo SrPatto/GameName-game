@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dsfw7wy4kybh5"]
+
+[ext_resource type="Script" uid="uid://ddwlfjaqkmmb4" path="res://scripts/utils/item.gd" id="1_uc8i1"]
+
+[resource]
+script = ExtResource("1_uc8i1")
+name = "Hedge shears lvl.2"
+desciption = "Not a really strong weapon, but has decent speed."
+cost = 22
+metadata/_custom_type_script = "uid://ddwlfjaqkmmb4"
