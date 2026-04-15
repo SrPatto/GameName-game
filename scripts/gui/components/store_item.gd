@@ -22,11 +22,6 @@ func _ready() -> void:
 	set_item_icon()
 	set_item_description()
 	set_item_name()
-	
-	
-	if !Global.upgrades_manager:
-		return
-	buy_button.disabled = Global.upgrades_manager.total_points < item.cost
 
 func set_item_icon():
 	icon_texture.texture = item.icon

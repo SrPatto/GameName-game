@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://br8nbl6jqfjdg"]
+
+[ext_resource type="Script" uid="uid://cw8aqvcyj8658" path="res://scripts/gui/components/feedback_label.gd" id="1_uhpey"]
+
+[node name="feedbackLabel" type="Label" unique_id=1617158123]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "MESSAGE"
+script = ExtResource("1_uhpey")

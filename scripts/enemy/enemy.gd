@@ -161,7 +161,7 @@ func shoot_tuna():
 	var new_tuna: TunaProjectile = TUNA_SCENE.instantiate()
 	new_tuna.parent = self
 	projectiles.add_child(new_tuna)
-	new_tuna.LaunchProjectile(tuna_spawn_point.global_position, Vector2(-.5, 1), 200, 45)
+	new_tuna.LaunchProjectile(tuna_spawn_point.global_position, Vector2(-.5, 1), 400, 45)
 
 func thorns_throw():
 	next_attack_enabled = false
@@ -200,7 +200,7 @@ func saliva_spit():
 	new_saliva.parent = self
 	await animation_player.animation_finished
 	projectiles.add_child(new_saliva)
-	new_saliva.LaunchProjectile(saliva_spawn_point.global_position, Vector2(-1, 1), 200, 15)
+	new_saliva.LaunchProjectile(saliva_spawn_point.global_position, Vector2(-1, 1), 400, 15)
 	
 	animation_player.play("idle")
 	next_move_cd.start()
@@ -248,12 +248,20 @@ func take_damage(damage: int):
 		is_dead = true
 		emit_signal("nopal_defeated")
 	hit_flash(1)
+	spawn_feedback_label(("-%d" % damage))
 	await get_tree().create_timer(.4).timeout
 	hit_flash(0)
 	pass
 
 func hit_flash(hit_effect):
 	sprite_2d.material.set_shader_parameter("hit_effect", hit_effect)
+
+func spawn_feedback_label(message: String):
+	const FEEDBACK_LABEL = preload("uid://br8nbl6jqfjdg")
+	var feedback_label = FEEDBACK_LABEL.instantiate()
+	add_child(feedback_label)
+	feedback_label.global_position = global_position + Vector2(-20, -160)
+	feedback_label.feedback_tween(message) 
 
 func _on_next_move_cd_timeout() -> void:
 	next_attack_enabled = true

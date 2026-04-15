@@ -6,7 +6,7 @@ extends Node
 @export var machete_lvl = 0
 @export var sickle_lvl = 0
 @export_category("Health")
-@export var extraHealth = 0
+@export_range(0, 2, 1) var extraHealth = 0
 @export_category("Points")
 @export var total_points := 0
 

@@ -2,6 +2,7 @@ class_name Player
 extends Node2D
 
 signal player_died
+signal player_damaged(strength: float)
 
 @onready var block_area: BlockBox = $block_area
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -18,7 +19,7 @@ signal player_died
 @onready var state_machine = $StateMachine
 
 @export_category("Combat")
-@export_range(3, 5, 1) var max_health: int = 3
+@export_range(3, 999, 1) var max_health: int = 3
 @export var current_weapon: Weapon
 
 @export_category("Managers")
@@ -39,6 +40,8 @@ var is_parry_activated := false
 var has_parried := false
 var is_switching := false
 
+const DAMAGED_STRENGTH := 10.0
+
 func _ready() -> void:
 	hurtbox.parent = self
 	hitbox.parent = self
@@ -49,6 +52,7 @@ func _ready() -> void:
 	current_health = max_health
 	print("max_health: ", max_health)
 	print("current_health: ", current_health)
+	hud.update_heart(current_health)
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -82,6 +86,8 @@ func take_damage(damage: int):
 	damaged = true
 	print("current_health: ", current_health)
 	print("max_health: ", max_health)
+	hud.update_heart(current_health)
+	emit_signal("player_damaged", DAMAGED_STRENGTH)
 
 func enable_invulnerability():
 	blink_effect(1)

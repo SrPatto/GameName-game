@@ -1,0 +1,230 @@
+[gd_scene format=3 uid="uid://cro80ufkgsyux"]
+
+[ext_resource type="Texture2D" uid="uid://bih6xcgsyv5n1" path="res://assets/level/SS_escenario.png" id="1_1r3rq"]
+[ext_resource type="PackedScene" uid="uid://dgn7xfiwb47md" path="res://scenes/enemy.tscn" id="2_u4f7j"]
+[ext_resource type="PackedScene" uid="uid://bx3vgf6t8ijq6" path="res://scenes/player.tscn" id="3_1wklo"]
+[ext_resource type="PackedScene" uid="uid://5n3stsoiw2ae" path="res://scenes/gui/components/weapon_slot.tscn" id="4_7ac3l"]
+[ext_resource type="Script" uid="uid://drtek4kfvueta" path="res://scripts/managers/tutorial_manager.gd" id="4_u4f7j"]
+[ext_resource type="Resource" uid="uid://dphvfnytd8nnk" path="res://resources/weapons/hoz.tres" id="5_iig34"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kayp2"]
+atlas = ExtResource("1_1r3rq")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2wbo"]
+atlas = ExtResource("1_1r3rq")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t48sv"]
+atlas = ExtResource("1_1r3rq")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svo7y"]
+atlas = ExtResource("1_1r3rq")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ac3l"]
+animations = [{
+"frames": [{
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_kayp2")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_j2wbo")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_t48sv")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_svo7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tutorial" type="Node2D" unique_id=303098444]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1764381681]
+z_index = -2
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7ac3l")
+autoplay = "default"
+
+[node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("2_u4f7j")]
+position = Vector2(720, 320)
+scale = Vector2(2, 2)
+max_health = 9999
+list_of_attacks = {
+"basic_attack": true,
+"basic_block": false,
+"saliva_spit": false,
+"strong_attack": false,
+"thornmail": false,
+"thorns_throw": false,
+"tuna_throw": false
+}
+
+[node name="player" parent="." unique_id=965662919 instance=ExtResource("3_1wklo")]
+position = Vector2(384, 512)
+scale = Vector2(2, 2)
+max_health = 999
+
+[node name="heartTexture4" parent="player/hud/HealthContainer" parent_id_path=PackedInt32Array(965662919, 247430688) index="3" unique_id=583505782]
+visible = false
+
+[node name="heartTexture5" parent="player/hud/HealthContainer" parent_id_path=PackedInt32Array(965662919, 247430688) index="4" unique_id=1141747624]
+visible = false
+
+[node name="WeaponSlot2" parent="player/hud/WeaponsContainer/CarouselContainer/CarouselControl" parent_id_path=PackedInt32Array(965662919, 732907786) index="1" unique_id=1180851434 instance=ExtResource("4_7ac3l")]
+modulate = Color(1, 1, 1, 0.65)
+z_index = -1
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 64.0
+offset_right = 128.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(32, 64)
+mouse_filter = 2
+weapon = ExtResource("5_iig34")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1271423743]
+position = Vector2(640, 360)
+
+[node name="tutorial_hud" type="Control" parent="." unique_id=1595274857]
+z_index = 2
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+mouse_filter = 2
+
+[node name="PanelContainer_1" type="PanelContainer" parent="tutorial_hud" unique_id=1697574788]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 600)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -300.0
+offset_right = -20.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_hud/PanelContainer_1" unique_id=720194025]
+custom_minimum_size = Vector2(340, 340)
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="tutorial_hud/PanelContainer_1/VBoxContainer" unique_id=1323884345]
+custom_minimum_size = Vector2(320, 480)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 24
+text = "Nopalus, as I decided to call this giant nopal plant thing. Has learned to fight
+
+You can block his attacks with “RIGHT CLICK”. Try to block in the right time to parry his damage.
+
+When he stays still  you can try to attack him back with “LEFT CLICK”"
+
+[node name="Button_1" type="Button" parent="tutorial_hud/PanelContainer_1/VBoxContainer" unique_id=1975813628]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "NEXT"
+
+[node name="PanelContainer_2" type="PanelContainer" parent="tutorial_hud" unique_id=2052975790]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(640, 220)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="tutorial_hud/PanelContainer_2" unique_id=103960241]
+custom_minimum_size = Vector2(620, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="tutorial_hud/PanelContainer_2/HBoxContainer" unique_id=1275985906]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "You can switch between your weapons with “MOUSE WHEEL”
+
+Each weapon deals different amount of damage attacking or blocking"
+
+[node name="Button_2" type="Button" parent="tutorial_hud/PanelContainer_2/HBoxContainer" unique_id=482808262]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+size_flags_vertical = 4
+text = "NEXT"
+
+[node name="PanelContainer_3" type="PanelContainer" parent="tutorial_hud" unique_id=477267359]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(400, 560)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 580.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tutorial_hud/PanelContainer_3" unique_id=1680689829]
+custom_minimum_size = Vector2(380, 340)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="tutorial_hud/PanelContainer_3/VBoxContainer" unique_id=320201780]
+custom_minimum_size = Vector2(320, 480)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "This is your health. 
+
+You can buy more at the shop after beating each level with points.
+
+You will receive more points not taking damage and beating Nopalus as fast as you can.
+So, reduce Nopalus health to 0 before he reduce yours.
+
+      		GOOD LUCK!"
+
+[node name="Button_3" type="Button" parent="tutorial_hud/PanelContainer_3/VBoxContainer" unique_id=1420133154]
+layout_mode = 2
+text = "FINISH TUTORIAL"
+
+[node name="TutorialManager" type="Node" parent="." unique_id=1398690855 node_paths=PackedStringArray("enemy", "player", "camera")]
+script = ExtResource("4_u4f7j")
+enemy = NodePath("../Enemy")
+player = NodePath("../player")
+camera = NodePath("../Camera2D")
+
+[connection signal="pressed" from="tutorial_hud/PanelContainer_1/VBoxContainer/Button_1" to="TutorialManager" method="_on_button_1_pressed"]
+[connection signal="pressed" from="tutorial_hud/PanelContainer_2/HBoxContainer/Button_2" to="TutorialManager" method="_on_button_2_pressed"]
+[connection signal="pressed" from="tutorial_hud/PanelContainer_3/VBoxContainer/Button_3" to="TutorialManager" method="_on_button_3_pressed"]
+
+[editable path="player"]
