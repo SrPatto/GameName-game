@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cu4dax3quxxsy" path="res://scenes/debug.tscn" id="2_hc2ek"]
 [ext_resource type="PackedScene" uid="uid://c1pi1vvpnl6sm" path="res://scenes/gui/transition_controller.tscn" id="2_oy7fy"]
 [ext_resource type="PackedScene" uid="uid://ma7cyokup1nc" path="res://scenes/managers/music_manager.tscn" id="3_idhv1"]
+[ext_resource type="Script" uid="uid://dq7hi1r8ald8b" path="res://scripts/managers/upgrades_manager.gd" id="5_dw52s"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_idhv1"]
 
@@ -12,6 +13,12 @@ script = ExtResource("1_i8qdd")
 world_2d = NodePath("world_2d")
 gui = NodePath("gui")
 transition_controller = NodePath("TransitionController")
+
+[node name="UpgradesManager" type="Node" parent="." unique_id=200206066]
+script = ExtResource("5_dw52s")
+machete_lvl = 0
+sickle_lvl = 0
+total_points = 9999
 
 [node name="world_2d" type="Node2D" parent="." unique_id=1481424665]
 
@@ -30,5 +37,3 @@ mouse_filter = 2
 
 [node name="MusicManager" parent="." unique_id=105702618 instance=ExtResource("3_idhv1")]
 stream = SubResource("AudioStreamInteractive_idhv1")
-
-[node name="UpgradesManager" type="Node" parent="." unique_id=200206066]

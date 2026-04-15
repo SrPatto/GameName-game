@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://df2iwc6v6w8ys"]
 
+[ext_resource type="Texture2D" uid="uid://dexfu6d8k1k43" path="res://assets/store/corazon_tienda.png" id="1_sb7j6"]
 [ext_resource type="Script" uid="uid://ddwlfjaqkmmb4" path="res://scripts/utils/item.gd" id="1_vd5ty"]
 
 [resource]
 script = ExtResource("1_vd5ty")
 name = "Health"
 desciption = "Increase your max health. Max.2"
+icon = ExtResource("1_sb7j6")
 cost = 14
 metadata/_custom_type_script = "uid://ddwlfjaqkmmb4"

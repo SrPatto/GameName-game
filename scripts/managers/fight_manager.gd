@@ -24,8 +24,26 @@ func init_game_components():
 	start_timer = false
 	player.input_manager.disabled = true
 	enemy.can_move = false
+	player_upgrades()
 	player.connect("player_died", defeat)
 	enemy.connect("nopal_defeated", win)
+
+func player_upgrades():
+	if !Global.upgrades_manager:
+		return
+	if Global.upgrades_manager.shears_lvl > 1:
+		player.hud.add_weapon(Global.upgrades_manager.get_shears_resource())
+		player.hud.current_index = player.hud.carousel_container.position_offset_node.get_child(player.hud.carousel_container.selected_index + 1)
+		player.hud.default_weapon.queue_free()
+	if Global.upgrades_manager.machete_lvl > 0:
+		player.hud.add_weapon(Global.upgrades_manager.get_machete_resource())
+	if Global.upgrades_manager.sickle_lvl > 0:
+		player.hud.add_weapon(Global.upgrades_manager.get_sickle_resource())
+		
+	if Global.upgrades_manager.extraHealth > 0:
+		player.max_health += Global.upgrades_manager.extraHealth
+		player.current_health = player.max_health
+	pass
 
 func start_fight():
 	start_timer = true
@@ -66,6 +84,10 @@ func get_final_score(win_screen: WinScreen):
 	win_screen.set_time_score(time)
 	win_screen.set_health_score(health_score, player.current_health, player.max_health)
 	win_screen.set_final_score(final_score)
+	
+	if !Global.upgrades_manager:
+		return
+	Global.upgrades_manager.total_points += final_score
 
 func defeat():
 	disable_game()

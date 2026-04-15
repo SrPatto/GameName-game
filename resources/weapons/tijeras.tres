@@ -8,6 +8,7 @@
 script = ExtResource("2_a3g5q")
 name = "Tijeras"
 damage = 5.0
+cadence = 0.8
 icon = ExtResource("2_fn1bb")
 animation = ExtResource("1_a3g5q")
 metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dsfw7wy4kybh5"]
 
+[ext_resource type="Texture2D" uid="uid://dlh6buhlpxp8h" path="res://assets/store/sissors_tienda_2.png" id="1_ag2nu"]
 [ext_resource type="Script" uid="uid://ddwlfjaqkmmb4" path="res://scripts/utils/item.gd" id="1_uc8i1"]
 
 [resource]
 script = ExtResource("1_uc8i1")
 name = "Hedge shears lvl.2"
 desciption = "Not a really strong weapon, but has decent speed."
+icon = ExtResource("1_ag2nu")
 cost = 22
 metadata/_custom_type_script = "uid://ddwlfjaqkmmb4"

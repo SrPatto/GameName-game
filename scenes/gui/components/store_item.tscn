@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c8d3oghn8ys8w"]
 
+[ext_resource type="Script" uid="uid://j3g1fxmv4v27" path="res://scripts/gui/components/store_item.gd" id="1_hfe07"]
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_chy7l"]
 load_path = "res://.godot/imported/machete.png-044c55f190c1db7f3c949f81920edd09.ctex"
 
@@ -20,6 +22,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hfe07")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1722374985]
 layout_mode = 1
@@ -34,25 +37,28 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="mainContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=1650427969]
-custom_minimum_size = Vector2(220, 220)
+custom_minimum_size = Vector2(220, 240)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="iconTexture" type="TextureRect" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1442874170]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = SubResource("CompressedTexture2D_chy7l")
-stretch_mode = 6
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1850230097]
+[node name="nameLabel" type="Label" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1850230097]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ITEM_NAME"
 horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1962307745]
+[node name="descriptionTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/mainContainer" unique_id=1962307745]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "lorem lo"
@@ -66,14 +72,37 @@ custom_minimum_size = Vector2(80, 32)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1251026188]
+[node name="costLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1251026188]
+unique_name_in_owner = true
 layout_mode = 2
 text = "COST: 00"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=482597283]
+[node name="buyButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=482597283]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_hfe07")
 text = "BUY"
+
+[node name="soldLabel" type="Label" parent="." unique_id=155714147]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.5
+offset_top = -88.0
+offset_right = 109.5
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.7853982
+theme_override_colors/font_color = Color(0.8039216, 0.49019608, 0.45882353, 1)
+theme_override_font_sizes/font_size = 64
+text = "SOLD !!"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/buyButton" to="." method="_on_buy_button_pressed"]

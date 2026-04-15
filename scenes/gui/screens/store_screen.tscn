@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yi2aodmw7mk6"]
 
-[ext_resource type="PackedScene" uid="uid://c8d3oghn8ys8w" path="res://scenes/gui/components/store_item.tscn" id="1_mq3c4"]
+[ext_resource type="Script" uid="uid://hvuwhf31yqhu" path="res://scripts/gui/screens/store_screen.gd" id="1_nuhtb"]
 
 [node name="StoreScreen" type="Control" unique_id=266608346]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nuhtb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1935470900]
 layout_mode = 1
@@ -96,18 +97,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
 alignment = 1
-
-[node name="StoreItem" parent="Panel/mainContainer/PanelContainer/itemsContainer" unique_id=682764852 instance=ExtResource("1_mq3c4")]
-layout_mode = 2
-
-[node name="StoreItem2" parent="Panel/mainContainer/PanelContainer/itemsContainer" unique_id=2023162535 instance=ExtResource("1_mq3c4")]
-layout_mode = 2
-
-[node name="StoreItem3" parent="Panel/mainContainer/PanelContainer/itemsContainer" unique_id=235707857 instance=ExtResource("1_mq3c4")]
-layout_mode = 2
-
-[node name="StoreItem4" parent="Panel/mainContainer/PanelContainer/itemsContainer" unique_id=1997762410 instance=ExtResource("1_mq3c4")]
-layout_mode = 2
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Panel/mainContainer" unique_id=783052554]
 custom_minimum_size = Vector2(0, 64)

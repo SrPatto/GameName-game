@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://bqqt7m2vp848s"]
+
+[ext_resource type="Texture2D" uid="uid://bwk5ehy5ulhdd" path="res://assets/player/SS_player_sissors.png" id="1_gtytq"]
+[ext_resource type="Texture2D" uid="uid://unuhhgq1i28g" path="res://assets/player/weapons/tijera_3.png" id="2_agmkh"]
+[ext_resource type="Script" uid="uid://b3xxbd41ffqqc" path="res://scripts/utils/weapon.gd" id="3_imxj1"]
+
+[resource]
+script = ExtResource("3_imxj1")
+name = "Tijeras_3"
+damage = 9.0
+cadence = 0.4
+level = 3
+icon = ExtResource("2_agmkh")
+animation = ExtResource("1_gtytq")
+metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

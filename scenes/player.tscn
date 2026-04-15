@@ -11,8 +11,6 @@
 [ext_resource type="Script" uid="uid://dxcim6nej56hi" path="res://scripts/utils/carousel_container.gd" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://5n3stsoiw2ae" path="res://scenes/gui/components/weapon_slot.tscn" id="8_jej6c"]
 [ext_resource type="Resource" uid="uid://mk0gacb6w275" path="res://resources/weapons/tijeras.tres" id="9_f1ej7"]
-[ext_resource type="Resource" uid="uid://csrfct3swvv5f" path="res://resources/weapons/machete.tres" id="10_oprun"]
-[ext_resource type="Resource" uid="uid://dphvfnytd8nnk" path="res://resources/weapons/hoz.tres" id="11_a8ls1"]
 [ext_resource type="Script" uid="uid://dmbm12dtma4s7" path="res://scripts/player/FSM/state_machine.gd" id="12_jej6c"]
 [ext_resource type="Script" uid="uid://b0pd456u67an5" path="res://scripts/player/FSM/states/idle_state.gd" id="13_f1ej7"]
 [ext_resource type="Script" uid="uid://dika4l181xts1" path="res://scripts/player/FSM/states/attack_state.gd" id="14_oprun"]
@@ -372,10 +370,11 @@ grow_vertical = 0
 unique_name_in_owner = true
 script = ExtResource("6_fjrip")
 spacing = 0.0
-position_offset_node = NodePath("Control")
+position_offset_node = NodePath("CarouselControl")
 metadata/_custom_type_script = "uid://dxcim6nej56hi"
 
-[node name="Control" type="Control" parent="hud/WeaponsContainer/CarouselContainer" unique_id=732907786]
+[node name="CarouselControl" type="Control" parent="hud/WeaponsContainer/CarouselContainer" unique_id=732907786]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -387,7 +386,7 @@ offset_right = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponSlot" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=1180851434 instance=ExtResource("8_jej6c")]
+[node name="WeaponSlot" parent="hud/WeaponsContainer/CarouselContainer/CarouselControl" unique_id=1180851434 instance=ExtResource("8_jej6c")]
 z_index = 1
 layout_mode = 0
 anchors_preset = 0
@@ -402,42 +401,6 @@ grow_vertical = 1
 pivot_offset = Vector2(32, 64)
 focus_mode = 2
 weapon = ExtResource("9_f1ej7")
-
-[node name="WeaponSlot2" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=488295673 instance=ExtResource("8_jej6c")]
-modulate = Color(1, 1, 1, 0.65)
-z_index = -1
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 64.0
-offset_right = 128.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(32, 64)
-mouse_filter = 2
-weapon = ExtResource("10_oprun")
-
-[node name="WeaponSlot3" parent="hud/WeaponsContainer/CarouselContainer/Control" unique_id=98215399 instance=ExtResource("8_jej6c")]
-modulate = Color(1, 1, 1, 0.3)
-z_index = -2
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 128.0
-offset_right = 192.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(32, 64)
-mouse_filter = 2
-weapon = ExtResource("11_a8ls1")
 
 [node name="Debug_state" type="Label" parent="." unique_id=477181163]
 anchors_preset = 5

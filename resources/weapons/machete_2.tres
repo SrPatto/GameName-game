@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dhxyq24el1h1d"]
+
+[ext_resource type="Texture2D" uid="uid://buxb7fsqggaxe" path="res://assets/player/SS_player_machete.png" id="1_cjijo"]
+[ext_resource type="Texture2D" uid="uid://bl3gaewcxpy3l" path="res://assets/player/weapons/machete_2.png" id="2_vw172"]
+[ext_resource type="Script" uid="uid://b3xxbd41ffqqc" path="res://scripts/utils/weapon.gd" id="3_fopco"]
+
+[resource]
+script = ExtResource("3_fopco")
+name = "Machete_2"
+damage = 12.0
+level = 2
+icon = ExtResource("2_vw172")
+animation = ExtResource("1_cjijo")
+metadata/_custom_type_script = "uid://b3xxbd41ffqqc"

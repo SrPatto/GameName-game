@@ -17,16 +17,6 @@ signal player_died
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine = $StateMachine
 
-enum Player_State {
-	Idle,
-	Attack,
-	Block,
-	Damage,
-	Defeated,
-	Switching
-}
-@export var current_state: Player_State = Player_State.Idle
-
 @export_category("Combat")
 @export_range(3, 5, 1) var max_health: int = 3
 @export var current_weapon: Weapon
@@ -34,7 +24,7 @@ enum Player_State {
 @export_category("Managers")
 @export var input_manager: InputManager
 @export var carousel_container: CarouselContainer
-@export var hud: Control
+@export var hud: PlayerHUD
 
 var current_health := 0
 var is_dead := false
@@ -57,6 +47,8 @@ func _ready() -> void:
 	
 	change_weapon(hud.current_index.weapon)
 	current_health = max_health
+	print("max_health: ", max_health)
+	print("current_health: ", current_health)
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -77,6 +69,9 @@ func change_weapon(new_weapon: Weapon):
 	print(current_weapon.name)
 	sprite_2d.texture = current_weapon.animation
 	hitbox.damage = current_weapon.damage
+	attack_cd.set_wait_time(current_weapon.cadence)
+	block_area.parry_damage = current_weapon.damage
+	block_area.parry_multiplayer = current_weapon.parry_multiplayer
 	await animation_player.animation_finished
 	is_switching = false
 	animation_player.play("idle")
