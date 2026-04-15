@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://c00ko6oa6w0l4"]
 
 [ext_resource type="Script" uid="uid://ct1y1q4uxumva" path="res://scripts/managers/scene_manager.gd" id="1_i8qdd"]
-[ext_resource type="PackedScene" uid="uid://cu4dax3quxxsy" path="res://scenes/debug.tscn" id="2_hc2ek"]
+[ext_resource type="PackedScene" uid="uid://mlq7qw3bhdo4" path="res://scenes/gui/screens/main_menu_screen.tscn" id="2_hc2ek"]
 [ext_resource type="PackedScene" uid="uid://c1pi1vvpnl6sm" path="res://scenes/gui/transition_controller.tscn" id="2_oy7fy"]
 [ext_resource type="PackedScene" uid="uid://ma7cyokup1nc" path="res://scenes/managers/music_manager.tscn" id="3_idhv1"]
 [ext_resource type="Script" uid="uid://dq7hi1r8ald8b" path="res://scripts/managers/upgrades_manager.gd" id="5_dw52s"]
+[ext_resource type="AudioStream" uid="uid://tt6iym1bfb3h" path="res://nopalazos-003.ogg" id="5_dw52s"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_idhv1"]
+clip_count = 1
+clip_0/name = &"Nopalazos"
+clip_0/stream = ExtResource("5_dw52s")
+clip_0/auto_advance = 0
 
 [node name="SceneManager" type="Node" unique_id=167461321 node_paths=PackedStringArray("world_2d", "gui", "transition_controller")]
 script = ExtResource("1_i8qdd")
@@ -22,8 +27,6 @@ total_points = 9999
 
 [node name="world_2d" type="Node2D" parent="." unique_id=1481424665]
 
-[node name="Debug" parent="world_2d" unique_id=1610004360 instance=ExtResource("2_hc2ek")]
-
 [node name="gui" type="Control" parent="." unique_id=1971952310]
 layout_mode = 3
 anchors_preset = 15
@@ -31,9 +34,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
+
+[node name="MainMenu" parent="gui" unique_id=122383140 instance=ExtResource("2_hc2ek")]
+layout_mode = 1
 
 [node name="TransitionController" parent="." unique_id=589586728 instance=ExtResource("2_oy7fy")]
+mouse_filter = 2
 
 [node name="MusicManager" parent="." unique_id=105702618 instance=ExtResource("3_idhv1")]
 stream = SubResource("AudioStreamInteractive_idhv1")
+volume_db = -18.0
+autoplay = true
+
+[node name="UpgradesManager" type="Node" parent="." unique_id=200206066]

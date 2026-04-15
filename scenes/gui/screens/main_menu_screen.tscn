@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://mlq7qw3bhdo4"]
+
+[ext_resource type="Script" uid="uid://ds3nnjtcy4his" path="res://scripts/gui/screens/main_menu.gd" id="1_ba3gx"]
+[ext_resource type="Texture2D" uid="uid://7ca6qcw28fu2" path="res://assets/ui/image.png" id="2_1dow3"]
+[ext_resource type="Script" uid="uid://cf4j80r5hhxlw" path="res://scripts/gui/play_btn.gd" id="2_hd08b"]
+[ext_resource type="Script" uid="uid://rbcjhry7ryhh" path="res://scripts/animated_texture_rect.gd" id="3_h8cfu"]
+[ext_resource type="Script" uid="uid://dke3thbnabiad" path="res://scripts/gui/settings_btn.gd" id="3_se8bv"]
+[ext_resource type="Texture2D" uid="uid://dombihovmloru" path="res://assets/ui/vayavaya.png" id="4_vt28n"]
+[ext_resource type="Theme" uid="uid://ct0yeqb8yf3m4" path="res://assets/ui/buttons.tres" id="5_1dow3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taqqn"]
+atlas = ExtResource("2_1dow3")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8fbm"]
+atlas = ExtResource("2_1dow3")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygw2p"]
+atlas = ExtResource("2_1dow3")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxvrs"]
+atlas = ExtResource("2_1dow3")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj6h6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taqqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8fbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygw2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxvrs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_splwf"]
+atlas = ExtResource("4_vt28n")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lmjf"]
+atlas = ExtResource("4_vt28n")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bln6"]
+atlas = ExtResource("4_vt28n")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ycnb"]
+atlas = ExtResource("4_vt28n")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u4v8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_splwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lmjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bln6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ycnb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control" unique_id=122383140]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ba3gx")
+start_pos = 500
+font_file = "uid://c4roupg1k8si3"
+
+[node name="AnimatedTextureRect" type="TextureRect" parent="." unique_id=736784679]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_taqqn")
+script = ExtResource("3_h8cfu")
+sprites = SubResource("SpriteFrames_wj6h6")
+auto_play = true
+playing = true
+metadata/_custom_type_script = "uid://rbcjhry7ryhh"
+
+[node name="TitleContainer" type="HBoxContainer" parent="." unique_id=1353616472]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="AnimatedTextureRect2" type="TextureRect" parent="." unique_id=1621847934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_splwf")
+script = ExtResource("3_h8cfu")
+sprites = SubResource("SpriteFrames_u4v8h")
+auto_play = true
+playing = true
+metadata/_custom_type_script = "uid://rbcjhry7ryhh"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1733814798]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -197.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 0.985074)
+theme = ExtResource("5_1dow3")
+
+[node name="PlayBtn" type="Button" parent="VBoxContainer" unique_id=1962906551]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+script = ExtResource("2_hd08b")
+
+[node name="SettingsBtn" type="Button" parent="VBoxContainer" unique_id=1069327080]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SETTINGS"
+script = ExtResource("3_se8bv")
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer" unique_id=27943405]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "QUIT
+"
+
+[connection signal="pressed" from="VBoxContainer/PlayBtn" to="VBoxContainer/PlayBtn" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsBtn" to="VBoxContainer/SettingsBtn" method="_on_pressed"]
