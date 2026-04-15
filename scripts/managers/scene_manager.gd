@@ -42,8 +42,8 @@ func change_gui_scene(
 		else:
 			gui.remove_child(current_gui_scene) # Keeps in memory, does not run
 	var new = load(new_scene).instantiate()
-	gui.add_child(new)
 	current_gui_scene = new
+	gui.add_child(new)
 	if transition:
 		transition_controller.transition(transition_in, seconds)
 

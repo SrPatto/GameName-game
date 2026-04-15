@@ -37,6 +37,10 @@ mouse_filter = 1
 layout_mode = 1
 
 [node name="TransitionController" parent="." unique_id=589586728 instance=ExtResource("2_oy7fy")]
+offset_left = -41.0
+offset_top = 66.0
+offset_right = -41.0
+offset_bottom = 66.0
 mouse_filter = 2
 
 [node name="MusicManager" parent="." unique_id=105702618 instance=ExtResource("3_idhv1")]

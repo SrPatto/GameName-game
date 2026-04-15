@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b1c73c4pdgot5"]
+
+[ext_resource type="Script" uid="uid://c68vjqk5hs5ig" path="res://scripts/levels/debug.gd" id="1_e127x"]
+[ext_resource type="Texture2D" uid="uid://bih6xcgsyv5n1" path="res://assets/level/SS_escenario.png" id="2_heu5o"]
+[ext_resource type="PackedScene" uid="uid://dgn7xfiwb47md" path="res://scenes/enemy.tscn" id="3_s45gt"]
+[ext_resource type="PackedScene" uid="uid://bx3vgf6t8ijq6" path="res://scenes/player.tscn" id="4_4vryo"]
+[ext_resource type="Texture2D" uid="uid://iysnuyyfjovt" path="res://assets/level/escenario.png" id="5_g1ckg"]
+[ext_resource type="PackedScene" uid="uid://ptbqwmn21gqb" path="res://scenes/managers/fight_manager.tscn" id="6_t7v7a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kayp2"]
+atlas = ExtResource("2_heu5o")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2wbo"]
+atlas = ExtResource("2_heu5o")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t48sv"]
+atlas = ExtResource("2_heu5o")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svo7y"]
+atlas = ExtResource("2_heu5o")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ph7u"]
+animations = [{
+"frames": [{
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_kayp2")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_j2wbo")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_t48sv")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_svo7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Level4" type="Node2D" unique_id=1610004360]
+script = ExtResource("1_e127x")
+cooldown_override = 3.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1565529757]
+z_index = -2
+position = Vector2(640, 360)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_5ph7u")
+autoplay = "default"
+frame_progress = 0.17445415
+
+[node name="Enemy" parent="." unique_id=2027346477 instance=ExtResource("3_s45gt")]
+position = Vector2(720, 320)
+scale = Vector2(2, 2)
+max_health = 20
+list_of_attacks = {
+"basic_attack": true,
+"basic_block": true,
+"saliva_spit": true,
+"strong_attack": true,
+"thornmail": true,
+"thorns_throw": true,
+"tuna_throw": true
+}
+amount_of_attacks = 6
+
+[node name="player" parent="." unique_id=965662919 instance=ExtResource("4_4vryo")]
+position = Vector2(448, 488)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1992209470]
+position = Vector2(640, 360)
+
+[node name="Escenario" type="Sprite2D" parent="." unique_id=939235799]
+visible = false
+z_index = -2
+texture = ExtResource("5_g1ckg")
+metadata/_edit_lock_ = true
+
+[node name="FightManager" parent="." unique_id=1699300463 node_paths=PackedStringArray("enemy", "player") instance=ExtResource("6_t7v7a")]
+enemy = NodePath("../Enemy")
+player = NodePath("../player")

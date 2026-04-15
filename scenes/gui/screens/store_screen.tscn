@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://yi2aodmw7mk6"]
 
 [ext_resource type="Script" uid="uid://hvuwhf31yqhu" path="res://scripts/gui/screens/store_screen.gd" id="1_nuhtb"]
+[ext_resource type="FontFile" uid="uid://c4roupg1k8si3" path="res://assets/ui/fonts/SERIO___.TTF" id="2_prhb4"]
+[ext_resource type="FontFile" uid="uid://cpwfdjolt8o57" path="res://ari_bold.ttf" id="3_660q4"]
 
 [node name="StoreScreen" type="Control" unique_id=266608346]
 layout_mode = 3
@@ -58,6 +60,7 @@ alignment = 1
 [node name="titleLabel" type="Label" parent="Panel/mainContainer/topContainer" unique_id=551187605]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_prhb4")
 theme_override_font_sizes/font_size = 64
 text = "Store"
 horizontal_alignment = 1
@@ -82,6 +85,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_660q4")
 theme_override_font_sizes/font_size = 32
 text = "TOTAL POINTS: 0000"
 
@@ -109,6 +113,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("3_660q4")
 text = "Back to main Menu"
 
 [node name="nextButton" type="Button" parent="Panel/mainContainer/ButtonsContainer" unique_id=513925594]
@@ -118,3 +123,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
 text = "Next Day"
+
+[connection signal="pressed" from="Panel/mainContainer/ButtonsContainer/backMenuButton" to="." method="_on_back_menu_button_pressed"]
+[connection signal="pressed" from="Panel/mainContainer/ButtonsContainer/nextButton" to="." method="_on_next_button_pressed"]
